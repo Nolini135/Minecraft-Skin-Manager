@@ -1,0 +1,50 @@
+[gd_resource type="Theme" format=3 uid="uid://dw2p8xo81ir0l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v8lcx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sugp2"]
+bg_color = Color(0.9411765, 0.9411765, 0.9411765, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 4
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5qli"]
+bg_color = Color(0.8392157, 0.8392157, 0.8392157, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 4
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ut4sl"]
+bg_color = Color(0.96862745, 0.96862745, 0.96862745, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 4
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d6c5j"]
+bg_color = Color(1, 1, 1, 1)
+
+[resource]
+MenuBar/colors/font_color = Color(0, 0, 0, 1)
+MenuBar/colors/font_focus_color = Color(0, 0, 0, 1)
+MenuBar/colors/font_hover_color = Color(0, 0, 0, 1)
+MenuBar/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+MenuBar/colors/font_pressed_color = Color(0, 0, 0, 1)
+MenuBar/constants/h_separation = 16
+MenuBar/font_sizes/font_size = 22
+MenuBar/styles/disabled = SubResource("StyleBoxEmpty_v8lcx")
+MenuBar/styles/hover = SubResource("StyleBoxFlat_sugp2")
+MenuBar/styles/normal = SubResource("StyleBoxFlat_o5qli")
+MenuBar/styles/pressed = SubResource("StyleBoxFlat_ut4sl")
+Panel/styles/panel = SubResource("StyleBoxFlat_d6c5j")

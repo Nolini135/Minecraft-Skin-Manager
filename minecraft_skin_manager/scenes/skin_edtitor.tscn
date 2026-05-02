@@ -1,0 +1,450 @@
+[gd_scene format=3 uid="uid://8gd2yjyi8a5y"]
+
+[ext_resource type="Script" uid="uid://bobuxgv0w4si6" path="res://scripts/texture_editor.gd" id="1_t4784"]
+[ext_resource type="Script" uid="uid://da5mbtwtn1m8l" path="res://scripts/Components/layer_component.gd" id="2_bwcg2"]
+[ext_resource type="Script" uid="uid://8d2w25654jeh" path="res://scenes/skineditor3d_viewer.gd" id="2_o4u5r"]
+[ext_resource type="Theme" uid="uid://v01qaqdby2uw" path="res://resources/themes/dark_theme.tres" id="2_w2r33"]
+[ext_resource type="Texture2D" uid="uid://dv60yqb0veo2r" path="res://assets/transparent_bg.png" id="2_wdv0c"]
+[ext_resource type="Script" uid="uid://rwvb1vugpdit" path="res://scripts/menu_bar.gd" id="3_fjinl"]
+[ext_resource type="Texture2D" uid="uid://ct5lhgb6mt2bp" path="res://assets/buttons/undo.png" id="4_eu11n"]
+[ext_resource type="PackedScene" uid="uid://b216g4556ipw" path="res://scenes/skin_viewer_3d.tscn" id="4_w2r33"]
+[ext_resource type="Script" uid="uid://cu6p1mjwikr4s" path="res://scripts/skin_viewer_3d.gd" id="5_0yuvx"]
+[ext_resource type="Texture2D" uid="uid://cskqcq356jdhc" path="res://assets/buttons/undo_hover.png" id="5_r1o0h"]
+[ext_resource type="Texture2D" uid="uid://npl6wtohkqfj" path="res://assets/buttons/redo.png" id="6_3xo5m"]
+[ext_resource type="PackedScene" uid="uid://bn1nuiggj0jdf" path="res://scenes/Windows/about_window.tscn" id="7_hyoa5"]
+[ext_resource type="Texture2D" uid="uid://cqqovq7uwabmm" path="res://assets/buttons/redo_hover.png" id="7_xsxd8"]
+[ext_resource type="PackedScene" uid="uid://o4kypjhbytfa" path="res://scenes/Windows/new_skin_confirmation_dialog.tscn" id="9_sf01n"]
+[ext_resource type="Shader" uid="uid://xmx42gatdn87" path="res://shaders/grid_shader.gdshader" id="9_xsxd8"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_3xo5m"]
+device = -1
+ctrl_pressed = true
+keycode = 90
+unicode = 122
+
+[sub_resource type="Shortcut" id="Shortcut_xsxd8"]
+events = [SubResource("InputEventKey_3xo5m")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_bwcg2"]
+device = -1
+ctrl_pressed = true
+keycode = 89
+unicode = 121
+
+[sub_resource type="Shortcut" id="Shortcut_4xiir"]
+events = [SubResource("InputEventKey_bwcg2")]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bwcg2"]
+shader = ExtResource("9_xsxd8")
+shader_parameter/line_width = 1.0
+shader_parameter/cell_size = 10.0
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/grid_offset = Vector2(0, 0)
+
+[node name="SkinEdtitor" type="Control" unique_id=2019968350 node_paths=PackedStringArray("layer_component")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t4784")
+layer_component = NodePath("Components/LayerComponent")
+hold_click_tools = Array[String](["pen", "eraser"])
+single_click_tools = Array[String](["pen", "eraser", "bucket", "color_picker"])
+
+[node name="Components" type="Node" parent="." unique_id=1819342850]
+
+[node name="LayerComponent" type="Node" parent="Components" unique_id=877622939 node_paths=PackedStringArray("skin_editor")]
+script = ExtResource("2_bwcg2")
+skin_editor = NodePath("../..")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=402213702]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ToolsPanel" type="Panel" parent="VBoxContainer" unique_id=1288258394]
+custom_minimum_size = Vector2(240, 80)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ToolsPanel" unique_id=304019572]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ToolsPanel/MarginContainer" unique_id=1481566121]
+layout_mode = 2
+
+[node name="MenuBar" type="MenuBar" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer" unique_id=1079959188]
+layout_mode = 2
+theme = ExtResource("2_w2r33")
+script = ExtResource("3_fjinl")
+
+[node name="FileMenu" type="PopupMenu" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar" unique_id=1044810089]
+oversampling_override = 1.0
+title = "File"
+item_count = 3
+item_0/text = "New"
+item_0/id = 3
+item_1/text = "Open"
+item_1/id = 1
+item_2/text = "Save"
+item_2/id = 2
+
+[node name="AboutMenu" type="PopupMenu" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar" unique_id=1911585580]
+oversampling_override = 1.0
+title = "About"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer" unique_id=1796874765]
+layout_mode = 2
+
+[node name="ToolSelector" type="OptionButton" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1782751150]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_vertical = 4
+selected = 0
+item_count = 4
+popup/item_0/text = "Pen"
+popup/item_0/id = 0
+popup/item_1/text = "Eraser"
+popup/item_1/id = 1
+popup/item_2/text = "Color Picker"
+popup/item_2/id = 2
+popup/item_3/text = "Bucket (fill)"
+popup/item_3/id = 3
+
+[node name="UndoButton" type="TextureButton" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=271982464]
+texture_filter = 1
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+shortcut = SubResource("Shortcut_xsxd8")
+texture_normal = ExtResource("4_eu11n")
+texture_pressed = ExtResource("5_r1o0h")
+texture_hover = ExtResource("5_r1o0h")
+texture_focused = ExtResource("5_r1o0h")
+stretch_mode = 0
+
+[node name="RedoButton" type="TextureButton" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=699467146]
+texture_filter = 1
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+shortcut = SubResource("Shortcut_4xiir")
+texture_normal = ExtResource("6_3xo5m")
+texture_pressed = ExtResource("7_xsxd8")
+texture_hover = ExtResource("7_xsxd8")
+texture_focused = ExtResource("7_xsxd8")
+stretch_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1477738564]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/HBoxContainer" unique_id=215223599]
+layout_mode = 2
+size_flags_horizontal = 3
+split_offsets = PackedInt32Array(242)
+split_offset = 242
+
+[node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer" unique_id=1494038013]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="CanvasPanel" type="Panel" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer" unique_id=1814410074]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel" unique_id=1862292659]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="BGTexture" type="TextureRect" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer" unique_id=150061384]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("2_wdv0c")
+stretch_mode = 1
+
+[node name="CanvasViewer" type="Control" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer" unique_id=637865664]
+clip_contents = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer" unique_id=1540404519]
+custom_minimum_size = Vector2(1500, 1500)
+anchors_preset = 0
+offset_right = 1500.0
+offset_bottom = 1500.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="ZoomContainer" type="Control" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control" unique_id=2069355162]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Canvas" type="TextureRect" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer" unique_id=1295333492]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -300.0
+offset_right = 300.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridOverlay" type="ColorRect" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas" unique_id=1720456557]
+visible = false
+material = SubResource("ShaderMaterial_bwcg2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -450.0
+offset_top = -450.0
+offset_right = -450.0
+offset_bottom = -450.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LayersPanel" type="Panel" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer" unique_id=704928007]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="body" type="Button" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" unique_id=9196960]
+custom_minimum_size = Vector2(64, 90)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -45.0
+offset_right = -57.0
+offset_bottom = 45.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="arm_right" type="Button" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=1406013612]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -45.0
+offset_right = -4.0
+offset_bottom = 45.0
+grow_vertical = 2
+
+[node name="arm_left" type="Button" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=289673275]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -45.0
+offset_right = 34.0
+offset_bottom = 45.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="leg_right" type="Button" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=2021922495]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_right = 30.0
+offset_bottom = 94.0
+grow_vertical = 0
+
+[node name="leg_left" type="Button" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=314552586]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = 4.0
+offset_bottom = 94.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="head" type="Button" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=360793621]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.208
+anchor_right = 0.5
+anchor_bottom = 0.208
+offset_left = -30.0
+offset_top = -82.72
+offset_right = 30.0
+offset_bottom = -22.720001
+grow_horizontal = 2
+
+[node name="LayerCheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" unique_id=257355628]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -107.0
+offset_right = -16.0
+offset_bottom = 31.0
+grow_horizontal = 0
+button_pressed = true
+text = "Layer"
+
+[node name="3DCanvasPanel" type="Panel" parent="VBoxContainer/HBoxContainer/HSplitContainer" unique_id=452748997]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel" unique_id=1979215812]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer" unique_id=985063822]
+layout_mode = 2
+stretch = true
+mouse_target = true
+script = ExtResource("2_o4u5r")
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" unique_id=186846003]
+handle_input_locally = false
+msaa_3d = 1
+physics_object_picking = true
+size = Vector2i(722, 784)
+render_target_update_mode = 4
+
+[node name="SkinViewer3D" parent="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport" unique_id=256221848 node_paths=PackedStringArray("wide_editor", "slim_editor") instance=ExtResource("4_w2r33")]
+script = ExtResource("5_0yuvx")
+wide_editor = NodePath("wide_editor")
+slim_editor = NodePath("slim_editor")
+
+[node name="Camera3D" parent="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D/CameraContainer" parent_id_path=PackedInt32Array(256221848, 568293106) index="0" unique_id=1713212233 node_paths=PackedStringArray("skin_editor")]
+skin_editor = NodePath("../../../../../../../../../..")
+
+[node name="ModelSelector" type="OptionButton" parent="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer" unique_id=426028174]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+selected = 0
+item_count = 2
+popup/item_0/text = "Wide Model"
+popup/item_0/id = 0
+popup/item_1/text = "Slim Model"
+popup/item_1/id = 1
+
+[node name="ColorPanel" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1303859089]
+custom_minimum_size = Vector2(330, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ColorPanel" unique_id=282153148]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorPicker" type="ColorPicker" parent="VBoxContainer/HBoxContainer/ColorPanel/VBoxContainer" unique_id=1134368372]
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(1, 0, 0, 1)
+edit_intensity = false
+color_mode = 1
+picker_shape = 2
+sampler_visible = false
+
+[node name="HexButton" type="Button" parent="VBoxContainer/HBoxContainer/ColorPanel/VBoxContainer" unique_id=1144347319]
+layout_mode = 2
+text = "Copy Hex"
+
+[node name="OpenFileDialog" type="FileDialog" parent="." unique_id=1538107073]
+oversampling_override = 1.0
+title = "Open a File"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png")
+use_native_dialog = true
+
+[node name="SaveFileDialog" type="FileDialog" parent="." unique_id=640759281]
+oversampling_override = 1.0
+access = 2
+filters = PackedStringArray("*.png")
+use_native_dialog = true
+
+[node name="Windows" type="Node" parent="." unique_id=2085374354]
+
+[node name="AboutWindow" parent="Windows" unique_id=501139318 instance=ExtResource("7_hyoa5")]
+
+[node name="NewSkinConfirmationDialog" parent="Windows" unique_id=635232353 node_paths=PackedStringArray("editor") instance=ExtResource("9_sf01n")]
+editor = NodePath("../..")
+
+[connection signal="index_pressed" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar/FileMenu" to="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar" method="_on_file_menu_index_pressed"]
+[connection signal="about_to_popup" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar/AboutMenu" to="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar" method="_on_about_menu_about_to_popup"]
+[connection signal="item_selected" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/ToolSelector" to="." method="_on_tool_selector_item_selected"]
+[connection signal="pressed" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/UndoButton" to="." method="_on_undo_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/RedoButton" to="." method="_on_redo_button_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer" to="." method="_on_canvas_viewer_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer" to="." method="_on_canvas_viewer_mouse_exited"]
+[connection signal="gui_input" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas" to="." method="_on_canvas_gui_input"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_body_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/arm_right" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_arm_right_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/arm_left" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_arm_left_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/leg_right" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_leg_right_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/leg_left" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_leg_left_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/head" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_head_pressed"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/LayerCheckButton" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_layer_check_button_toggled"]
+[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" to="." method="_on_sub_viewport_container_mouse_entered"]
+[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" to="." method="_on_sub_viewport_container_mouse_exited"]
+[connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" method="_on_mouse_exited"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/ModelSelector" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_model_selector_item_selected"]
+[connection signal="color_changed" from="VBoxContainer/HBoxContainer/ColorPanel/VBoxContainer/ColorPicker" to="." method="_on_color_picker_color_changed"]
+[connection signal="file_selected" from="OpenFileDialog" to="." method="_on_open_file_dialog_file_selected"]
+[connection signal="file_selected" from="SaveFileDialog" to="." method="_on_file_saved"]
+
+[editable path="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D"]

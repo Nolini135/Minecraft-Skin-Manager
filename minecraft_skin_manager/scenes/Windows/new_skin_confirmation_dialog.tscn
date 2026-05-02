@@ -1,0 +1,209 @@
+[gd_scene format=3 uid="uid://o4kypjhbytfa"]
+
+[ext_resource type="Script" uid="uid://hjtnl6vw2gdv" path="res://scripts/new_skin_confirmation_dialog.gd" id="1_d7tti"]
+
+[node name="NewSkinConfirmationDialog" type="ConfirmationDialog" unique_id=635232353]
+oversampling_override = 1.0
+title = "Create New Skin"
+initial_position = 1
+size = Vector2i(450, 350)
+wrap_controls = false
+force_native = true
+ok_button_text = "New Skin"
+script = ExtResource("1_d7tti")
+
+[node name="Panel" type="Panel" parent="." unique_id=1037959976]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 442.0
+offset_bottom = 301.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=564481062]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1329931361]
+layout_mode = 2
+
+[node name="CavasOption" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1234349695]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/CavasOption" unique_id=1821407584]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Type: "
+
+[node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/CavasOption" unique_id=134599819]
+custom_minimum_size = Vector2(164, 0)
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "skin template"
+popup/item_0/id = 0
+popup/item_1/text = "solid color"
+popup/item_1/id = 1
+popup/item_2/text = "empty canvas"
+popup/item_2/id = 2
+
+[node name="CanvasSizeOption" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1323286333]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/CanvasSizeOption" unique_id=565484680]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Size: "
+
+[node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/CanvasSizeOption" unique_id=223176001]
+custom_minimum_size = Vector2(164, 0)
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "x64"
+popup/item_0/id = 0
+popup/item_1/text = "x128"
+popup/item_1/id = 1
+
+[node name="SkinModelOption" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=701992084]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/SkinModelOption" unique_id=855169007]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Model: "
+
+[node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/SkinModelOption" unique_id=980654836]
+custom_minimum_size = Vector2(164, 0)
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Wide"
+popup/item_0/id = 0
+popup/item_1/text = "Slim"
+popup/item_1/id = 1
+
+[node name="TemplatePanel" type="Panel" parent="Panel/MarginContainer/VBoxContainer" unique_id=512533135]
+custom_minimum_size = Vector2(0, 126)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/TemplatePanel" unique_id=1882051326]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/TemplatePanel/MarginContainer" unique_id=175014532]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/TemplatePanel/MarginContainer/VBoxContainer" unique_id=1497366235]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Skin Template Options"
+
+[node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/TemplatePanel/MarginContainer/VBoxContainer" unique_id=1273907760]
+layout_mode = 2
+selected = 0
+item_count = 9
+popup/item_0/text = "Alex"
+popup/item_0/id = 0
+popup/item_1/text = "Ari"
+popup/item_1/id = 1
+popup/item_2/text = "Efe"
+popup/item_2/id = 2
+popup/item_3/text = "Kai"
+popup/item_3/id = 3
+popup/item_4/text = "Makena"
+popup/item_4/id = 4
+popup/item_5/text = "Noor"
+popup/item_5/id = 5
+popup/item_6/text = "Steve"
+popup/item_6/id = 6
+popup/item_7/text = "Sunny"
+popup/item_7/id = 7
+popup/item_8/text = "Zuri"
+popup/item_8/id = 8
+
+[node name="SolidColorPanel" type="Panel" parent="Panel/MarginContainer/VBoxContainer" unique_id=1910813654]
+visible = false
+custom_minimum_size = Vector2(0, 126)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/SolidColorPanel" unique_id=1054706150]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/SolidColorPanel/MarginContainer" unique_id=1612810547]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/SolidColorPanel/MarginContainer/VBoxContainer" unique_id=823325396]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Solid Color Options"
+
+[node name="Color" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/SolidColorPanel/MarginContainer/VBoxContainer" unique_id=1658738885]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/SolidColorPanel/MarginContainer/VBoxContainer/Color" unique_id=604335011]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Color: "
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Panel/MarginContainer/VBoxContainer/SolidColorPanel/MarginContainer/VBoxContainer/Color" unique_id=1995560742]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+color = Color(1, 1, 1, 1)
+
+[node name="EmptyCavasPanel" type="Panel" parent="Panel/MarginContainer/VBoxContainer" unique_id=1654572007]
+visible = false
+custom_minimum_size = Vector2(0, 126)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/EmptyCavasPanel" unique_id=472345081]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/EmptyCavasPanel/MarginContainer" unique_id=1518358601]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/EmptyCavasPanel/MarginContainer/VBoxContainer" unique_id=1337780705]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Empty Canvas Options"
+
+[connection signal="confirmed" from="." to="." method="_on_confirmed"]

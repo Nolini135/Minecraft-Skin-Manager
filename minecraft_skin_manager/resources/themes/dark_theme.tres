@@ -1,0 +1,59 @@
+[gd_resource type="Theme" format=3 uid="uid://v01qaqdby2uw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v8lcx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8u1b"]
+bg_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8lcx"]
+bg_color = Color(0.078431375, 0.078431375, 0.078431375, 1)
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wfyh"]
+bg_color = Color(0.21960784, 0.21960784, 0.21960784, 1)
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_saxfq"]
+bg_color = Color(0.078431375, 0.078431375, 0.078431375, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_v8lcx"]
+color = Color(0.41598046, 0.41598043, 0.4159804, 1)
+grow_begin = -6.0
+grow_end = -6.0
+thickness = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_l8u1b"]
+color = Color(0.41568628, 0.41568628, 0.41568628, 1)
+grow_begin = -6.0
+grow_end = -6.0
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5y23t"]
+bg_color = Color(0.11858145, 0.11858136, 0.11858138, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_etfu1"]
+color = Color(0.41568628, 0.41568628, 0.41568628, 1)
+grow_begin = -6.0
+grow_end = -6.0
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etfu1"]
+bg_color = Color(0.078431375, 0.078431375, 0.078431375, 1)
+
+[resource]
+MenuBar/constants/h_separation = 16
+MenuBar/font_sizes/font_size = 22
+MenuBar/styles/disabled = SubResource("StyleBoxEmpty_v8lcx")
+MenuBar/styles/hover = SubResource("StyleBoxFlat_l8u1b")
+MenuBar/styles/normal = SubResource("StyleBoxFlat_v8lcx")
+MenuBar/styles/pressed = SubResource("StyleBoxFlat_0wfyh")
+Panel/styles/panel = SubResource("StyleBoxFlat_saxfq")
+PopupMenu/styles/labeled_separator_left = SubResource("StyleBoxLine_v8lcx")
+PopupMenu/styles/labeled_separator_right = SubResource("StyleBoxLine_l8u1b")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_5y23t")
+PopupMenu/styles/separator = SubResource("StyleBoxLine_etfu1")
+Window/styles/embedded_border = SubResource("StyleBoxFlat_etfu1")

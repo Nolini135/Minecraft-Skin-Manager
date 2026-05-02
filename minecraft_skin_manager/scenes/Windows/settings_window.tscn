@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bunuxi2lyx22i"]
+
+[ext_resource type="Script" uid="uid://dp02scn6fphqi" path="res://scripts/settings_window.gd" id="1_0vxjp"]
+[ext_resource type="Theme" uid="uid://v01qaqdby2uw" path="res://resources/themes/dark_theme.tres" id="2_p3qa1"]
+
+[node name="SettingsWindow" type="Window" unique_id=1471915597 node_paths=PackedStringArray("ui_theme")]
+oversampling_override = 1.0
+title = "Settings"
+position = Vector2i(0, 36)
+size = Vector2i(600, 360)
+transient = true
+min_size = Vector2i(450, 270)
+script = ExtResource("1_0vxjp")
+ui_theme = NodePath("")
+
+[node name="BG" type="Panel" parent="." unique_id=536033291]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_p3qa1")
+
+[node name="MarginContainer" type="MarginContainer" parent="BG" unique_id=515227834]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/MarginContainer" unique_id=1003320298]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="BG/MarginContainer/VBoxContainer" unique_id=1589521892]
+layout_mode = 2
+text = "No Settings Available for this version..."
+
+[node name="SaveButton" type="Button" parent="BG/MarginContainer/VBoxContainer" unique_id=1324848245]
+layout_mode = 2
+text = "Save Settings"
+
+[node name="WarnLabel" type="Label" parent="BG/MarginContainer/VBoxContainer" unique_id=72253094]
+layout_mode = 2
+theme = ExtResource("2_p3qa1")
+text = "You might have to restart to see some changes."
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="BG/MarginContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]

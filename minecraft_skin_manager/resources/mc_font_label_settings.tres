@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://dprlo5ot2bnq5"]
+
+[ext_resource type="FontFile" uid="uid://bvvdlm6tt8tsd" path="res://font/Mojang-Regular.ttf" id="1_ud5sj"]
+
+[resource]
+font = ExtResource("1_ud5sj")
+shadow_size = 2
+shadow_color = Color(0.1148968, 0.11489681, 0.1148968, 1)

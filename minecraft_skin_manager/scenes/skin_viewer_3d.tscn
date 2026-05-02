@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b216g4556ipw"]
+
+[ext_resource type="PackedScene" uid="uid://yt7aj2mr1hae" path="res://scenes/skins/wide_editor.tscn" id="2_cytil"]
+[ext_resource type="PackedScene" uid="uid://bw8e17w3e3dbb" path="res://scenes/skins/slim_editor.tscn" id="2_t85ln"]
+[ext_resource type="Script" uid="uid://db62to1e1qucr" path="res://scripts/skinviewer_camera.gd" id="3_cytil"]
+
+[sub_resource type="Environment" id="Environment_t4784"]
+background_mode = 1
+background_color = Color(0.3019608, 0.3019608, 0.3019608, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.4661808, 0.46618086, 0.46618068, 1)
+ssao_enabled = true
+ssao_intensity = 1.07
+
+[node name="SkinViewer3D" type="Node3D" unique_id=256221848]
+
+[node name="wide_editor" parent="." unique_id=624696521 instance=ExtResource("2_cytil")]
+
+[node name="slim_editor" parent="." unique_id=1339320309 instance=ExtResource("2_t85ln")]
+
+[node name="CameraContainer" type="Node3D" parent="." unique_id=568293106]
+transform = Transform3D(-0.81915206, -0.4055798, 0.4055798, 0, 0.70710677, 0.70710677, -0.57357645, 0.579228, -0.579228, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraContainer" unique_id=1713212233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+script = ExtResource("3_cytil")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CameraContainer/Camera3D" unique_id=1819635641]
+light_energy = 0.57
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=980170996]
+environment = SubResource("Environment_t4784")
