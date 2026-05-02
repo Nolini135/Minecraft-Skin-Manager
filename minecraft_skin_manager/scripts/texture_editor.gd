@@ -6,7 +6,7 @@ class_name TextureEditor
 
 @onready var color_picker: ColorPicker = $VBoxContainer/HBoxContainer/ColorPanel/VBoxContainer/ColorPicker
 @onready var tool_selector: OptionButton = $VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/ToolSelector
-@onready var canvas: TextureRect = $VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas
+@onready var canvas: TextureRect = %Canvas
 @onready var grid_overlay: Control = $VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/GridOverlay
 @onready var zoom_container: Control = $VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer
 @onready var canvas_viewer: Control = $VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer
@@ -52,6 +52,8 @@ var is_mouse_on_skin_viewer: bool = false
 var is_holding_alt: bool = true
 var old_tool: String
 
+var is_ready: bool = false
+
 func _ready():
 	zoom_container.size_flags_stretch_ratio = true
 	
@@ -59,6 +61,7 @@ func _ready():
 	img.fill(Color(1.0, 1.0, 1.0, 1.0))
 	
 	initialize_canvas(img)
+	is_ready = true
 
 func _on_color_picker_color_changed(color: Color) -> void:
 	# Color (RGBA)
@@ -69,7 +72,6 @@ func _on_color_picker_color_changed(color: Color) -> void:
 		hex = selected_color.to_html(true)
 	else:
 		hex = selected_color.to_html(false)
-	
 
 func _input(event: InputEvent) -> void:
 	zoom_canvas(event)
@@ -199,16 +201,16 @@ func local_to_image(pos: Vector2):
 
 func draw_pixel(p: Vector2i):
 	if is_in_bounds(p.x, p.y):
-		#image.set_pixel(p.x, p.y, selected_color)
-		var active_layer = layer_component.active_layer
-		layer_component.layers[active_layer]["image"].set_pixel(p.x, p.y, selected_color)
+		image.set_pixel(p.x, p.y, selected_color)
+		#var active_layer = layer_component.active_layer
+		#layer_component.layers[active_layer]["image"].set_pixel(p.x, p.y, selected_color)
 		refresh_texture()
 
 func erase_pixel(p: Vector2i):
 	if is_in_bounds(p.x, p.y):
-		#image.set_pixel(p.x, p.y, Color(0.0, 0.0, 0.0, 0.0))
-		var active_layer = layer_component.active_layer
-		layer_component.layers[active_layer]["image"].set_pixel(p.x, p.y, Color(0.0, 0.0, 0.0, 0.0))
+		image.set_pixel(p.x, p.y, Color(0.0, 0.0, 0.0, 0.0))
+		#var active_layer = layer_component.active_layer
+		#layer_component.layers[active_layer]["image"].set_pixel(p.x, p.y, Color(0.0, 0.0, 0.0, 0.0))
 		refresh_texture()
 
 func color_picker_tool(p: Vector2i):
@@ -217,8 +219,10 @@ func color_picker_tool(p: Vector2i):
 		selected_color = color_picker.color
 
 func bucket_fill(start: Vector2i):
-	var active_layer = layer_component.active_layer
-	var img = layer_component.layers[active_layer]["image"]
+	#var active_layer = layer_component.active_layer
+	#var img = layer_component.layers[active_layer]["image"]
+	
+	var img = image
 	
 	var w = img.get_width()
 	var h = img.get_height()
@@ -367,8 +371,13 @@ func push_undo_state():
 	redo_stack.clear()
 
 func refresh_texture():
-	var final_render = layer_component.render_layers()
-	texture = ImageTexture.create_from_image(final_render)
+	if canvas == null:
+		printerr("canvas is null, skipping refresh")
+		return
+	
+	#var final_render = layer_component.render_layers()
+	#texture = ImageTexture.create_from_image(final_render)
+	texture = ImageTexture.create_from_image(image)
 	canvas.texture = texture
 	update_preview()
 

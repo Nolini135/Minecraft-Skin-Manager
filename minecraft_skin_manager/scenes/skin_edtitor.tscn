@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://8gd2yjyi8a5y"]
 
 [ext_resource type="Script" uid="uid://bobuxgv0w4si6" path="res://scripts/texture_editor.gd" id="1_t4784"]
-[ext_resource type="Script" uid="uid://da5mbtwtn1m8l" path="res://scripts/Components/layer_component.gd" id="2_bwcg2"]
 [ext_resource type="Script" uid="uid://8d2w25654jeh" path="res://scenes/skineditor3d_viewer.gd" id="2_o4u5r"]
 [ext_resource type="Theme" uid="uid://v01qaqdby2uw" path="res://resources/themes/dark_theme.tres" id="2_w2r33"]
 [ext_resource type="Texture2D" uid="uid://dv60yqb0veo2r" path="res://assets/transparent_bg.png" id="2_wdv0c"]
@@ -49,15 +48,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t4784")
-layer_component = NodePath("Components/LayerComponent")
+layer_component = NodePath("")
 hold_click_tools = Array[String](["pen", "eraser"])
 single_click_tools = Array[String](["pen", "eraser", "bucket", "color_picker"])
 
 [node name="Components" type="Node" parent="." unique_id=1819342850]
-
-[node name="LayerComponent" type="Node" parent="Components" unique_id=877622939 node_paths=PackedStringArray("skin_editor")]
-script = ExtResource("2_bwcg2")
-skin_editor = NodePath("../..")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=402213702]
 layout_mode = 1
@@ -205,6 +200,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Canvas" type="TextureRect" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer" unique_id=1295333492]
+unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
