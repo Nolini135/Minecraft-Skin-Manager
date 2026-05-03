@@ -34,9 +34,6 @@ var height: int = 0
 
 
 
-# undo/redo CRTL+Z CRTL+Y
-var undo_stack: Array[Image] = []
-var redo_stack: Array[Image] = []
 
 
 var is_ready: bool = false
@@ -227,26 +224,7 @@ func _on_file_saved(path: String) -> void:
 
 ############## Undo / Redo ##############
 
-func undo():
-	
-	if undo_stack.is_empty():
-		return
-	redo_stack.append(image.duplicate())
-	image = undo_stack.pop_back()
-	refresh_texture()
 
-func redo():
-	if redo_stack.is_empty():
-		return
-	
-	undo_stack.append(image.duplicate())
-	image = redo_stack.pop_back()
-	refresh_texture()
-
-
-func push_undo_state():
-	undo_stack.append(image.duplicate())
-	redo_stack.clear()
 
 func refresh_texture():
 	if canvas == null:
@@ -258,10 +236,3 @@ func refresh_texture():
 	texture = ImageTexture.create_from_image(image)
 	canvas.texture = texture
 	update_preview()
-
-
-func _on_undo_button_pressed() -> void:
-	undo()
-
-func _on_redo_button_pressed() -> void:
-	redo()

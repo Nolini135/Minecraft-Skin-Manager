@@ -1,7 +1,8 @@
-class_name ZoomCanvasViewer extends Node
+class_name CanvasViewerComponent extends Node
 
 @export var skin_editor: TextureEditor
 @export var tool_component: ToolComponent
+@export var undo_component: UndoComponent
 
 @onready var canvas_viewer: Control = %CanvasViewer
 @onready var zoom_container: Control = %ZoomContainer
@@ -22,7 +23,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if is_mouse_on_canvas or is_mouse_on_skin_viewer:
-				skin_editor.push_undo_state()
+				undo_component.push_undo_state()
 				tool_component.is_painting = true
 			else:
 				tool_component.is_painting = false

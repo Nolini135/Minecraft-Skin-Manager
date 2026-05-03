@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://ducupo4pqv377" path="res://scripts/Components/zoom_component.gd" id="3_1lfo5"]
 [ext_resource type="Script" uid="uid://rwvb1vugpdit" path="res://scripts/menu_bar.gd" id="3_fjinl"]
 [ext_resource type="Texture2D" uid="uid://ct5lhgb6mt2bp" path="res://assets/buttons/undo.png" id="4_eu11n"]
+[ext_resource type="Script" uid="uid://21pnp8q35k3a" path="res://scripts/Components/undo_component.gd" id="4_l67ed"]
 [ext_resource type="PackedScene" uid="uid://b216g4556ipw" path="res://scenes/skin_viewer_3d.tscn" id="4_w2r33"]
 [ext_resource type="Script" uid="uid://cu6p1mjwikr4s" path="res://scripts/skin_viewer_3d.gd" id="5_0yuvx"]
 [ext_resource type="Texture2D" uid="uid://cnjp47a4hnkt5" path="res://assets/tools/pen_16.png" id="5_4xiir"]
@@ -64,10 +65,15 @@ skin_editor = NodePath("../..")
 hold_click_tools = Array[String](["pen", "eraser"])
 single_click_tools = Array[String](["pen", "eraser", "bucket", "color_picker"])
 
-[node name="CanvasViewerComponent" type="Node" parent="Components" unique_id=1341968281 node_paths=PackedStringArray("skin_editor", "tool_component")]
+[node name="CanvasViewerComponent" type="Node" parent="Components" unique_id=1341968281 node_paths=PackedStringArray("skin_editor", "tool_component", "undo_component")]
 script = ExtResource("3_1lfo5")
 skin_editor = NodePath("../..")
 tool_component = NodePath("../ToolComponent")
+undo_component = NodePath("../UndoComponent")
+
+[node name="UndoComponent" type="Node" parent="Components" unique_id=785783015 node_paths=PackedStringArray("skin_editor")]
+script = ExtResource("4_l67ed")
+skin_editor = NodePath("../..")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=402213702]
 layout_mode = 1
@@ -452,8 +458,8 @@ editor = NodePath("../..")
 [connection signal="about_to_popup" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar/AboutMenu" to="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar" method="_on_about_menu_about_to_popup"]
 [connection signal="item_selected" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/ToolSelector" to="." method="_on_tool_selector_item_selected"]
 [connection signal="item_selected" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/ToolSelector" to="Components/ToolComponent" method="_on_tool_selector_item_selected"]
-[connection signal="pressed" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/UndoButton" to="." method="_on_undo_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/RedoButton" to="." method="_on_redo_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/UndoButton" to="Components/UndoComponent" method="_on_undo_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/RedoButton" to="Components/UndoComponent" method="_on_redo_button_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer" to="Components/CanvasViewerComponent" method="_on_canvas_viewer_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer" to="Components/CanvasViewerComponent" method="_on_canvas_viewer_mouse_exited"]
 [connection signal="gui_input" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas" to="." method="_on_canvas_gui_input"]
