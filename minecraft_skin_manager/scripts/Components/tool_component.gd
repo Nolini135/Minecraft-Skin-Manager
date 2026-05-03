@@ -43,7 +43,7 @@ func _input(event: InputEvent) -> void:
 		selected_tool = "bucket"
 		tool_selector.select(3)
 	
-	# Dynamic color picker
+	# Dynamic color picker (Press/Release ALT)
 	if Input.is_action_just_pressed("dynamic_picker"):
 		old_tool = selected_tool
 		is_holding_alt = true
@@ -52,7 +52,7 @@ func _input(event: InputEvent) -> void:
 		selected_tool = old_tool
 		is_holding_alt = false
 
-# Tool selector
+# Tool selector Options
 func _on_tool_selector_item_selected(index: int) -> void:
 	match index:
 		0:
