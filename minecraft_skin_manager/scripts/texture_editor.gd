@@ -33,9 +33,6 @@ var width: int = 0
 var height: int = 0
 
 
-
-
-
 var is_ready: bool = false
 
 func _ready():
@@ -46,19 +43,6 @@ func _ready():
 	
 	initialize_canvas(img)
 	is_ready = true
-
-func _on_color_picker_color_changed(color: Color) -> void:
-	# Color (RGBA)
-	selected_color = color_picker.color
-	
-	# html / hex
-	if selected_color.a < 1.0:
-		hex = selected_color.to_html(true)
-	else:
-		hex = selected_color.to_html(false)
-
-
-
 
 
 ############################ Texture Editor ############################
@@ -221,9 +205,6 @@ func _on_file_saved(path: String) -> void:
 	
 	if not err == OK:
 		print("Erreur de sauvegarde :", err)
-
-############## Undo / Redo ##############
-
 
 
 func refresh_texture():

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdwjwnofjtlq4"
-path="res://.godot/imported/pen_8.png-deadc09840dd5498c5bb2738aa5f239d.ctex"
+uid="uid://cve3asjkoli4c"
+path="res://.godot/imported/center_canvas.png-788bf11a99ae4703e2bafef6b5dea156.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tools/pen_8.png"
-dest_files=["res://.godot/imported/pen_8.png-deadc09840dd5498c5bb2738aa5f239d.ctex"]
+source_file="res://assets/buttons/center_canvas.png"
+dest_files=["res://.godot/imported/center_canvas.png-788bf11a99ae4703e2bafef6b5dea156.ctex"]
 
 [params]
 

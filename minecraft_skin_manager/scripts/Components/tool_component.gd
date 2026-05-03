@@ -16,6 +16,9 @@ var selected_tool: String = "pen"
 @export_category("Tools")
 @export var hold_click_tools: Array[String]
 @export var single_click_tools: Array[String]
+@export var cursor_image: Dictionary[String, CompressedTexture2D]
+@export var cursor_hotspot: Dictionary[String, Vector2i]
+
 
 
 func _input(event: InputEvent) -> void:
@@ -42,6 +45,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action("shortcut_bucket"):
 		selected_tool = "bucket"
 		tool_selector.select(3)
+	update_cursor()
 	
 	# Dynamic color picker (Press/Release ALT)
 	if Input.is_action_just_pressed("dynamic_picker"):
@@ -63,6 +67,7 @@ func _on_tool_selector_item_selected(index: int) -> void:
 			selected_tool = "color_picker"
 		3:
 			selected_tool = "bucket"
+	update_cursor()
 
 
 func _on_canvas_gui_input(event: InputEvent) -> void:
@@ -76,3 +81,21 @@ func _on_canvas_gui_input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton and Input.is_action_just_pressed("left_click"):
 		if single_click_tools.has(selected_tool):
 			skin_editor.draw_action(selected_tool, pixel)
+
+
+func update_cursor():
+	var image = cursor_image.get(selected_tool)
+	var hotspot = cursor_hotspot.get(selected_tool)
+	
+	Input.set_custom_mouse_cursor(image, Input.CURSOR_ARROW, hotspot)
+
+
+func _on_color_picker_color_changed(color: Color) -> void:
+	# Color (RGBA)
+	skin_editor.selected_color = color
+	
+	# html / hex
+	if color.a < 1.0:
+		skin_editor.hex = color.to_html(true)
+	else:
+		skin_editor.hex = color.to_html(false)

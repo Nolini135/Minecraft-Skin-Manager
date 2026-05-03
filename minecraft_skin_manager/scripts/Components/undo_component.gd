@@ -6,7 +6,6 @@ class_name UndoComponent extends Node
 var undo_stack: Array[Image] = []
 var redo_stack: Array[Image] = []
 
-
 func undo():
 	var image = skin_editor.image
 	

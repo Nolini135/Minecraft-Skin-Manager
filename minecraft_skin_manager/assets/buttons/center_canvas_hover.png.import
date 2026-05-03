@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8xovodp5tfhd"
-path="res://.godot/imported/bucket_cursor.png-92779680281e6b037a23668f692f23c2.ctex"
+uid="uid://byuyokugqyb1h"
+path="res://.godot/imported/center_canvas_hover.png-38076919d2bcf3f568f4f7f3aa3ca9ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tools/bucket_cursor.png"
-dest_files=["res://.godot/imported/bucket_cursor.png-92779680281e6b037a23668f692f23c2.ctex"]
+source_file="res://assets/buttons/center_canvas_hover.png"
+dest_files=["res://.godot/imported/center_canvas_hover.png-38076919d2bcf3f568f4f7f3aa3ca9ab.ctex"]
 
 [params]
 

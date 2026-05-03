@@ -6,6 +6,7 @@ class_name CanvasViewerComponent extends Node
 
 @onready var canvas_viewer: Control = %CanvasViewer
 @onready var zoom_container: Control = %ZoomContainer
+@onready var canvas: TextureRect = %Canvas
 
 
 # Canvas Viewer Variables
@@ -54,6 +55,7 @@ func zoom_canvas(event: InputEvent):
 	if event is InputEventMouseMotion and dragging:
 		var delta = get_viewport().get_mouse_position() - drag_start
 		offset = offset_start + delta
+		
 		update_canvas_viewer()
 	
 
@@ -78,3 +80,8 @@ func _on_sub_viewport_container_mouse_exited() -> void:
 func update_canvas_viewer():
 	zoom_container.scale = Vector2(zoom, zoom)
 	zoom_container.position = offset
+
+
+func _on_center_button_pressed() -> void:
+	offset = Vector2.ZERO
+	update_canvas_viewer()
