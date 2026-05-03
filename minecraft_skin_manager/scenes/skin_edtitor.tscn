@@ -9,10 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://ct5lhgb6mt2bp" path="res://assets/buttons/undo.png" id="4_eu11n"]
 [ext_resource type="PackedScene" uid="uid://b216g4556ipw" path="res://scenes/skin_viewer_3d.tscn" id="4_w2r33"]
 [ext_resource type="Script" uid="uid://cu6p1mjwikr4s" path="res://scripts/skin_viewer_3d.gd" id="5_0yuvx"]
+[ext_resource type="Texture2D" uid="uid://cnjp47a4hnkt5" path="res://assets/tools/pen_16.png" id="5_4xiir"]
 [ext_resource type="Texture2D" uid="uid://cskqcq356jdhc" path="res://assets/buttons/undo_hover.png" id="5_r1o0h"]
 [ext_resource type="Texture2D" uid="uid://npl6wtohkqfj" path="res://assets/buttons/redo.png" id="6_3xo5m"]
+[ext_resource type="Texture2D" uid="uid://cutcj4nswoug3" path="res://assets/tools/eraser_16.png" id="6_u6yaq"]
+[ext_resource type="Texture2D" uid="uid://df0wwvkc7btmh" path="res://assets/tools/color_picker_16.png" id="7_1lfo5"]
 [ext_resource type="PackedScene" uid="uid://bn1nuiggj0jdf" path="res://scenes/Windows/about_window.tscn" id="7_hyoa5"]
 [ext_resource type="Texture2D" uid="uid://cqqovq7uwabmm" path="res://assets/buttons/redo_hover.png" id="7_xsxd8"]
+[ext_resource type="Texture2D" uid="uid://cfjm5mdhfq681" path="res://assets/tools/bucket_16.png" id="8_l67ed"]
 [ext_resource type="PackedScene" uid="uid://o4kypjhbytfa" path="res://scenes/Windows/new_skin_confirmation_dialog.tscn" id="9_sf01n"]
 [ext_resource type="Shader" uid="uid://xmx42gatdn87" path="res://shaders/grid_shader.gdshader" id="9_xsxd8"]
 
@@ -110,18 +114,23 @@ layout_mode = 2
 
 [node name="ToolSelector" type="OptionButton" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1782751150]
 unique_name_in_owner = true
+texture_filter = 1
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_vertical = 4
 selected = 0
 item_count = 4
 popup/item_0/text = "Pen"
+popup/item_0/icon = ExtResource("5_4xiir")
 popup/item_0/id = 0
 popup/item_1/text = "Eraser"
+popup/item_1/icon = ExtResource("6_u6yaq")
 popup/item_1/id = 1
 popup/item_2/text = "Color Picker"
+popup/item_2/icon = ExtResource("7_1lfo5")
 popup/item_2/id = 2
 popup/item_3/text = "Bucket (fill)"
+popup/item_3/icon = ExtResource("8_l67ed")
 popup/item_3/id = 3
 
 [node name="UndoButton" type="TextureButton" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=271982464]
@@ -436,6 +445,7 @@ editor = NodePath("../..")
 [connection signal="index_pressed" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar/FileMenu" to="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar" method="_on_file_menu_index_pressed"]
 [connection signal="about_to_popup" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar/AboutMenu" to="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar" method="_on_about_menu_about_to_popup"]
 [connection signal="item_selected" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/ToolSelector" to="." method="_on_tool_selector_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/ToolSelector" to="Components/ToolComponent" method="_on_tool_selector_item_selected"]
 [connection signal="pressed" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/UndoButton" to="." method="_on_undo_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/RedoButton" to="." method="_on_redo_button_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer" to="." method="_on_canvas_viewer_mouse_entered"]
