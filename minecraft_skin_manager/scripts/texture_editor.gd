@@ -4,29 +4,28 @@ class_name TextureEditor
 @export_category("References")
 @export var layer_component: LayerComponent
 
-@onready var color_picker: ColorPicker = $VBoxContainer/HBoxContainer/ColorPanel/VBoxContainer/ColorPicker
-@onready var tool_selector: OptionButton = $VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/ToolSelector
+@onready var color_picker: ColorPicker = %ColorPicker
+
+@onready var tool_selector: OptionButton = %ToolSelector
+
 @onready var canvas: TextureRect = %Canvas
-@onready var grid_overlay: Control = $VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/GridOverlay
-@onready var zoom_container: Control = $VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer
-@onready var canvas_viewer: Control = $VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer
-@onready var skin_viewer: SkinEditorViewer = $"VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer"
+@onready var grid_overlay: Control = %GridOverlay
+@onready var zoom_container: Control = %ZoomContainer
+@onready var canvas_viewer: Control = %CanvasViewer
 
-@onready var file_menu: PopupMenu = $VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar/FileMenu
+@onready var skin_viewer: SkinEditorViewer = %SubViewportContainer
 
-@onready var new_skin_confirmation_dialog: ConfirmationDialog = $Windows/NewSkinConfirmationDialog
+@onready var file_menu: PopupMenu = %FileMenu
+
+@onready var new_skin_confirmation_dialog: ConfirmationDialog = %NewSkinConfirmationDialog
 @onready var open_file_dialog: FileDialog = $OpenFileDialog
 @onready var save_file_dialog: FileDialog = $SaveFileDialog
 
+@onready var tool_component: ToolComponent = %ToolComponent
 
 var selected_color: Color = Color("ff0000ff")
 var hex: String = "#ff0000"
 
-var selected_tool: String = "pen"
-
-@export_category("Tools")
-@export var hold_click_tools: Array[String]
-@export var single_click_tools: Array[String]
 
 var image: Image
 var texture: ImageTexture
@@ -41,16 +40,12 @@ var drag_start: Vector2 = Vector2.ZERO
 var offset_start: Vector2 = Vector2.ZERO
 var is_mouse_on_canvas: bool = false
 
+var is_mouse_on_skin_viewer: bool = false
+
 # undo/redo CRTL+Z CRTL+Y
 var undo_stack: Array[Image] = []
 var redo_stack: Array[Image] = []
 
-var is_painting: bool = false
-var is_mouse_on_skin_viewer: bool = false
-
-# dynamic color picker
-var is_holding_alt: bool = true
-var old_tool: String
 
 var is_ready: bool = false
 
@@ -81,44 +76,11 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if is_mouse_on_canvas or is_mouse_on_skin_viewer:
 				push_undo_state()
-				is_painting = true
+				tool_component.is_painting = true
 			else:
-				is_painting = false
+				tool_component.is_painting = false
 	
-	# Shortcuts for tools
-	if event.is_action("shortcut_pen"):
-		selected_tool = "pen"
-		tool_selector.select(0)
-	elif event.is_action("shortcut_eraser"):
-		selected_tool = "eraser"
-		tool_selector.select(1)
-	elif event.is_action("shortcut_picker"):
-		selected_tool = "color_picker"
-		tool_selector.select(2)
-	elif event.is_action("shortcut_bucket"):
-		selected_tool = "bucket"
-		tool_selector.select(3)
-	
-	# Dynamic color picker
-	if Input.is_action_just_pressed("dynamic_picker"):
-		old_tool = selected_tool
-		is_holding_alt = true
-		selected_tool = "color_picker"
-	elif Input.is_action_just_released("dynamic_picker"):
-		selected_tool = old_tool
-		is_holding_alt = false
 
-# Tool selector
-func _on_tool_selector_item_selected(index: int) -> void:
-	match index:
-		0:
-			selected_tool = "pen"
-		1:
-			selected_tool = "eraser"
-		2:
-			selected_tool = "color_picker"
-		3:
-			selected_tool = "bucket"
 
 ############################ Texture Editor ############################
 
@@ -158,17 +120,6 @@ func update_preview():
 	skin_viewer.apply_skin_to_model(skin_viewer.skin_wide, texture)
 	skin_viewer.apply_skin_to_model(skin_viewer.skin_slim, texture)
 
-func _on_canvas_gui_input(event: InputEvent) -> void:
-	var local_pos = event.position
-	var pixel = local_to_image(local_pos)
-	
-	if event is InputEventMouseMotion and Input.is_action_pressed("left_click"):
-		if hold_click_tools.has(selected_tool):
-			draw_action(selected_tool, pixel)
-			
-	elif event is InputEventMouseButton and Input.is_action_just_pressed("left_click"):
-		if single_click_tools.has(selected_tool):
-			draw_action(selected_tool, pixel)
 
 func draw_from_uv(uv: Vector2):
 	var tex_size = texture.get_size()
@@ -178,7 +129,7 @@ func draw_from_uv(uv: Vector2):
 		floor(uv.x * tex_size.x),
 		floor(uv.y * tex_size.x)
 	)
-	draw_action(selected_tool, pos)
+	draw_action(tool_component.selected_tool, pos)
 
 func draw_action(tool: String, pos: Vector2i):
 	match tool:

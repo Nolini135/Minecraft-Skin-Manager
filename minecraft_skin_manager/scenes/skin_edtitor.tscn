@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://8gd2yjyi8a5y"]
 
 [ext_resource type="Script" uid="uid://bobuxgv0w4si6" path="res://scripts/texture_editor.gd" id="1_t4784"]
+[ext_resource type="Script" uid="uid://dg76pyojmipgs" path="res://scripts/Components/tool_component.gd" id="2_bwcg2"]
 [ext_resource type="Script" uid="uid://8d2w25654jeh" path="res://scenes/skineditor3d_viewer.gd" id="2_o4u5r"]
 [ext_resource type="Theme" uid="uid://v01qaqdby2uw" path="res://resources/themes/dark_theme.tres" id="2_w2r33"]
 [ext_resource type="Texture2D" uid="uid://dv60yqb0veo2r" path="res://assets/transparent_bg.png" id="2_wdv0c"]
@@ -40,7 +41,7 @@ shader_parameter/cell_size = 10.0
 shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/grid_offset = Vector2(0, 0)
 
-[node name="SkinEdtitor" type="Control" unique_id=2019968350 node_paths=PackedStringArray("layer_component")]
+[node name="SkinEdtitor" type="Control" unique_id=2019968350]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,11 +49,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t4784")
-layer_component = NodePath("")
-hold_click_tools = Array[String](["pen", "eraser"])
-single_click_tools = Array[String](["pen", "eraser", "bucket", "color_picker"])
 
 [node name="Components" type="Node" parent="." unique_id=1819342850]
+
+[node name="ToolComponent" type="Node" parent="Components" unique_id=691228896 node_paths=PackedStringArray("skin_editor")]
+unique_name_in_owner = true
+script = ExtResource("2_bwcg2")
+skin_editor = NodePath("../..")
+hold_click_tools = Array[String](["pen", "eraser"])
+single_click_tools = Array[String](["pen", "eraser", "bucket", "color_picker"])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=402213702]
 layout_mode = 1
@@ -85,6 +90,7 @@ theme = ExtResource("2_w2r33")
 script = ExtResource("3_fjinl")
 
 [node name="FileMenu" type="PopupMenu" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar" unique_id=1044810089]
+unique_name_in_owner = true
 oversampling_override = 1.0
 title = "File"
 item_count = 3
@@ -103,6 +109,7 @@ title = "About"
 layout_mode = 2
 
 [node name="ToolSelector" type="OptionButton" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1782751150]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -177,6 +184,7 @@ texture = ExtResource("2_wdv0c")
 stretch_mode = 1
 
 [node name="CanvasViewer" type="Control" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer" unique_id=637865664]
+unique_name_in_owner = true
 clip_contents = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
@@ -191,6 +199,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="ZoomContainer" type="Control" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control" unique_id=2069355162]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -217,6 +226,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GridOverlay" type="ColorRect" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas" unique_id=1720456557]
+unique_name_in_owner = true
 visible = false
 material = SubResource("ShaderMaterial_bwcg2")
 layout_mode = 1
@@ -341,6 +351,7 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer" unique_id=985063822]
+unique_name_in_owner = true
 layout_mode = 2
 stretch = true
 mouse_target = true
@@ -358,8 +369,9 @@ script = ExtResource("5_0yuvx")
 wide_editor = NodePath("wide_editor")
 slim_editor = NodePath("slim_editor")
 
-[node name="Camera3D" parent="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D/CameraContainer" parent_id_path=PackedInt32Array(256221848, 568293106) index="0" unique_id=1713212233 node_paths=PackedStringArray("skin_editor")]
+[node name="Camera3D" parent="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D/CameraContainer" parent_id_path=PackedInt32Array(256221848, 568293106) index="0" unique_id=1713212233 node_paths=PackedStringArray("skin_editor", "tool_component")]
 skin_editor = NodePath("../../../../../../../../../..")
+tool_component = NodePath("../../../../../../../../../../Components/ToolComponent")
 
 [node name="ModelSelector" type="OptionButton" parent="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer" unique_id=426028174]
 custom_minimum_size = Vector2(250, 0)
@@ -386,6 +398,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorPicker" type="ColorPicker" parent="VBoxContainer/HBoxContainer/ColorPanel/VBoxContainer" unique_id=1134368372]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 color = Color(1, 0, 0, 1)
@@ -417,6 +430,7 @@ use_native_dialog = true
 [node name="AboutWindow" parent="Windows" unique_id=501139318 instance=ExtResource("7_hyoa5")]
 
 [node name="NewSkinConfirmationDialog" parent="Windows" unique_id=635232353 node_paths=PackedStringArray("editor") instance=ExtResource("9_sf01n")]
+unique_name_in_owner = true
 editor = NodePath("../..")
 
 [connection signal="index_pressed" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar/FileMenu" to="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar" method="_on_file_menu_index_pressed"]
@@ -427,6 +441,7 @@ editor = NodePath("../..")
 [connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer" to="." method="_on_canvas_viewer_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer" to="." method="_on_canvas_viewer_mouse_exited"]
 [connection signal="gui_input" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas" to="." method="_on_canvas_gui_input"]
+[connection signal="gui_input" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas" to="Components/ToolComponent" method="_on_canvas_gui_input"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_body_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/arm_right" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_arm_right_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/arm_left" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_arm_left_pressed"]

@@ -40,6 +40,7 @@ project/assembly_name="Minecraft skin manager"
 [file_customization]
 
 folder_colors={
+"res://assets/": "red",
 "res://scenes/": "green"
 }
 

@@ -4,6 +4,8 @@ extends Camera3D
 
 @export var skin_editor: TextureEditor
 
+@export var tool_component: ToolComponent
+
 var painting := false
 
 func _process(_delta: float) -> void:
@@ -18,7 +20,7 @@ func _input(event: InputEvent) -> void:
 ############## RayCast Drawing ##############
 
 func rc_drawing_input(event: InputEvent):
-	if skin_editor.hold_click_tools.has(skin_editor.selected_tool):
+	if tool_component.hold_click_tools.has(tool_component.selected_tool):
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 			painting = event.is_pressed()
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
