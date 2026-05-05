@@ -36,6 +36,8 @@ var height: int = 0
 var is_ready: bool = false
 
 func _ready():
+	get_window().min_size = Vector2(1150, 700)
+	
 	zoom_container.size_flags_stretch_ratio = true
 	
 	var img = Image.create(64, 64, false, Image.FORMAT_RGBA8)

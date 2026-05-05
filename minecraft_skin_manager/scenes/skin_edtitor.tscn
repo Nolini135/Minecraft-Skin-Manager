@@ -58,6 +58,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t4784")
 
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=2120363151]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.078431375, 0.078431375, 0.078431375, 1)
+
 [node name="Components" type="Node" parent="." unique_id=1819342850]
 
 [node name="ToolComponent" type="Node" parent="Components" unique_id=691228896 node_paths=PackedStringArray("skin_editor")]
@@ -89,19 +98,55 @@ undo_component = NodePath("../UndoComponent")
 script = ExtResource("4_l67ed")
 skin_editor = NodePath("../..")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=402213702]
+[node name="GlobalMargin" type="MarginContainer" parent="." unique_id=1295301164]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
 
-[node name="ToolsPanel" type="Panel" parent="VBoxContainer" unique_id=1288258394]
-custom_minimum_size = Vector2(240, 80)
+[node name="VBoxContainer" type="VBoxContainer" parent="GlobalMargin" unique_id=402213702]
 layout_mode = 2
+theme_override_constants/separation = 16
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ToolsPanel" unique_id=304019572]
+[node name="MenuBar" type="MenuBar" parent="GlobalMargin/VBoxContainer" unique_id=1079959188 node_paths=PackedStringArray("editor")]
+layout_mode = 2
+theme = ExtResource("2_w2r33")
+script = ExtResource("3_fjinl")
+editor = NodePath("../../..")
+
+[node name="FileMenu" type="PopupMenu" parent="GlobalMargin/VBoxContainer/MenuBar" unique_id=1044810089]
+unique_name_in_owner = true
+oversampling_override = 1.0
+title = "File"
+visible = true
+theme = ExtResource("2_w2r33")
+item_count = 3
+item_0/text = "New"
+item_0/id = 3
+item_1/text = "Open"
+item_1/id = 1
+item_2/text = "Save"
+item_2/id = 2
+
+[node name="AboutMenu" type="PopupMenu" parent="GlobalMargin/VBoxContainer/MenuBar" unique_id=1911585580]
+oversampling_override = 1.0
+title = "About"
+theme = ExtResource("2_w2r33")
+
+[node name="ToolsPanel" type="Panel" parent="GlobalMargin/VBoxContainer" unique_id=1288258394]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 2
+theme = ExtResource("2_w2r33")
+
+[node name="MarginContainer" type="MarginContainer" parent="GlobalMargin/VBoxContainer/ToolsPanel" unique_id=304019572]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,39 +156,20 @@ grow_vertical = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ToolsPanel/MarginContainer" unique_id=1481566121]
+[node name="VBoxContainer" type="VBoxContainer" parent="GlobalMargin/VBoxContainer/ToolsPanel/MarginContainer" unique_id=1481566121]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GlobalMargin/VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer" unique_id=1796874765]
 layout_mode = 2
 
-[node name="MenuBar" type="MenuBar" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer" unique_id=1079959188]
-layout_mode = 2
-theme = ExtResource("2_w2r33")
-script = ExtResource("3_fjinl")
-
-[node name="FileMenu" type="PopupMenu" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar" unique_id=1044810089]
-unique_name_in_owner = true
-oversampling_override = 1.0
-title = "File"
-item_count = 3
-item_0/text = "New"
-item_0/id = 3
-item_1/text = "Open"
-item_1/id = 1
-item_2/text = "Save"
-item_2/id = 2
-
-[node name="AboutMenu" type="PopupMenu" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar" unique_id=1911585580]
-oversampling_override = 1.0
-title = "About"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer" unique_id=1796874765]
-layout_mode = 2
-
-[node name="ToolSelector" type="OptionButton" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1782751150]
+[node name="ToolSelector" type="OptionButton" parent="GlobalMargin/VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1782751150]
 unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_vertical = 4
+theme = ExtResource("2_w2r33")
 selected = 0
 item_count = 4
 popup/item_0/text = "Pen"
@@ -159,9 +185,9 @@ popup/item_3/text = "Bucket (fill)"
 popup/item_3/icon = ExtResource("8_l67ed")
 popup/item_3/id = 3
 
-[node name="UndoButton" type="TextureButton" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=271982464]
+[node name="UndoButton" type="TextureButton" parent="GlobalMargin/VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=271982464]
 texture_filter = 1
-custom_minimum_size = Vector2(31, 31)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 shortcut = SubResource("Shortcut_xsxd8")
 texture_normal = ExtResource("4_eu11n")
@@ -170,9 +196,9 @@ texture_hover = ExtResource("5_r1o0h")
 texture_focused = ExtResource("5_r1o0h")
 stretch_mode = 0
 
-[node name="RedoButton" type="TextureButton" parent="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=699467146]
+[node name="RedoButton" type="TextureButton" parent="GlobalMargin/VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=699467146]
 texture_filter = 1
-custom_minimum_size = Vector2(31, 31)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 shortcut = SubResource("Shortcut_4xiir")
 texture_normal = ExtResource("6_3xo5m")
@@ -181,50 +207,68 @@ texture_hover = ExtResource("7_xsxd8")
 texture_focused = ExtResource("7_xsxd8")
 stretch_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1477738564]
+[node name="CenterButton" type="TextureButton" parent="GlobalMargin/VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1288484413]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("17_p5iwi")
+texture_pressed = ExtResource("18_k2puy")
+texture_hover = ExtResource("18_k2puy")
+texture_focused = ExtResource("18_k2puy")
+stretch_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GlobalMargin/VBoxContainer" unique_id=1477738564]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 16
 alignment = 2
 
-[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/HBoxContainer" unique_id=215223599]
+[node name="HSplitContainer" type="HSplitContainer" parent="GlobalMargin/VBoxContainer/HBoxContainer" unique_id=215223599]
 layout_mode = 2
 size_flags_horizontal = 3
 split_offsets = PackedInt32Array(242)
+drag_area_margin_begin = 64
+drag_area_margin_end = 64
+drag_area_highlight_in_editor = true
 split_offset = 242
 
-[node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer" unique_id=1494038013]
-custom_minimum_size = Vector2(500, 0)
+[node name="VSplitContainer" type="VSplitContainer" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer" unique_id=1494038013]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+drag_area_margin_begin = 32
+drag_area_margin_end = 32
+drag_area_highlight_in_editor = true
 
-[node name="CanvasPanel" type="Panel" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer" unique_id=1814410074]
-custom_minimum_size = Vector2(500, 524)
+[node name="CanvasPanel" type="Panel" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer" unique_id=1814410074]
+custom_minimum_size = Vector2(250, 250)
 layout_mode = 2
+theme = ExtResource("2_w2r33")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel" unique_id=1862292659]
+[node name="MarginContainer" type="MarginContainer" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel" unique_id=1862292659]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
 
-[node name="BGTexture" type="TextureRect" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer" unique_id=150061384]
+[node name="BGTexture" type="TextureRect" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer" unique_id=150061384]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("2_wdv0c")
 stretch_mode = 1
 
-[node name="CanvasViewer" type="Control" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer" unique_id=637865664]
+[node name="CanvasViewer" type="Control" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer" unique_id=637865664]
 unique_name_in_owner = true
 clip_contents = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer" unique_id=1540404519]
+[node name="Control" type="Control" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer" unique_id=1540404519]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -235,7 +279,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="ZoomContainer" type="Control" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control" unique_id=2069355162]
+[node name="ZoomContainer" type="Control" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control" unique_id=2069355162]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -245,7 +289,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Canvas" type="TextureRect" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer" unique_id=1295333492]
+[node name="Canvas" type="TextureRect" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer" unique_id=1295333492]
 unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(100, 100)
@@ -262,7 +306,7 @@ offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridOverlay" type="ColorRect" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas" unique_id=1720456557]
+[node name="GridOverlay" type="ColorRect" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas" unique_id=1720456557]
 unique_name_in_owner = true
 visible = false
 material = SubResource("ShaderMaterial_bwcg2")
@@ -278,43 +322,27 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ButtonsContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel" unique_id=1245886152]
-custom_minimum_size = Vector2(0, 24)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 8.0
-offset_bottom = 32.0
-grow_horizontal = 2
-
-[node name="CenterButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/ButtonsContainer" unique_id=1288484413]
-texture_filter = 1
-layout_mode = 2
-texture_normal = ExtResource("17_p5iwi")
-texture_pressed = ExtResource("18_k2puy")
-texture_hover = ExtResource("18_k2puy")
-texture_focused = ExtResource("18_k2puy")
-
-[node name="LayersPanel" type="Panel" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer" unique_id=704928007]
+[node name="LayersPanel" type="Panel" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer" unique_id=704928007]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
+theme = ExtResource("2_w2r33")
 
-[node name="body" type="Button" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" unique_id=9196960]
+[node name="body" type="Button" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" unique_id=9196960]
 custom_minimum_size = Vector2(64, 90)
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -121.0
+offset_left = -32.0
 offset_top = -45.0
-offset_right = -57.0
+offset_right = 32.0
 offset_bottom = 45.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
 
-[node name="arm_right" type="Button" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=1406013612]
+[node name="arm_right" type="Button" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=1406013612]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -325,7 +353,7 @@ offset_right = -4.0
 offset_bottom = 45.0
 grow_vertical = 2
 
-[node name="arm_left" type="Button" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=289673275]
+[node name="arm_left" type="Button" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=289673275]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -339,7 +367,7 @@ offset_bottom = 45.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="leg_right" type="Button" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=2021922495]
+[node name="leg_right" type="Button" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=2021922495]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -349,7 +377,7 @@ offset_right = 30.0
 offset_bottom = 94.0
 grow_vertical = 0
 
-[node name="leg_left" type="Button" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=314552586]
+[node name="leg_left" type="Button" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=314552586]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -362,7 +390,7 @@ offset_bottom = 94.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="head" type="Button" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=360793621]
+[node name="head" type="Button" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=360793621]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 1
 anchors_preset = -1
@@ -376,23 +404,25 @@ offset_right = 30.0
 offset_bottom = -22.720001
 grow_horizontal = 2
 
-[node name="LayerCheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" unique_id=257355628]
+[node name="LayerCheckButton" type="CheckButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" unique_id=257355628]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -107.0
-offset_right = -16.0
-offset_bottom = 31.0
-grow_horizontal = 0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.5
+offset_top = 3.0
+offset_right = 45.5
+offset_bottom = 34.0
+grow_horizontal = 2
 button_pressed = true
 text = "Layer"
 
-[node name="3DCanvasPanel" type="Panel" parent="VBoxContainer/HBoxContainer/HSplitContainer" unique_id=452748997]
+[node name="3DCanvasPanel" type="Panel" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer" unique_id=452748997]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+theme = ExtResource("2_w2r33")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel" unique_id=1979215812]
+[node name="MarginContainer" type="MarginContainer" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel" unique_id=1979215812]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -404,30 +434,31 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer" unique_id=985063822]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer" unique_id=985063822]
 unique_name_in_owner = true
 layout_mode = 2
 stretch = true
 mouse_target = true
 script = ExtResource("2_o4u5r")
 
-[node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" unique_id=186846003]
+[node name="SubViewport" type="SubViewport" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" unique_id=186846003]
 handle_input_locally = false
 msaa_3d = 1
 physics_object_picking = true
-size = Vector2i(722, 804)
+size = Vector2i(936, 741)
 render_target_update_mode = 4
 
-[node name="SkinViewer3D" parent="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport" unique_id=256221848 node_paths=PackedStringArray("wide_editor", "slim_editor") instance=ExtResource("4_w2r33")]
+[node name="SkinViewer3D" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport" unique_id=256221848 node_paths=PackedStringArray("wide_editor", "slim_editor") instance=ExtResource("4_w2r33")]
+unique_name_in_owner = true
 script = ExtResource("5_0yuvx")
 wide_editor = NodePath("wide_editor")
 slim_editor = NodePath("slim_editor")
 
-[node name="Camera3D" parent="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D/CameraContainer" parent_id_path=PackedInt32Array(256221848, 568293106) index="0" unique_id=1713212233 node_paths=PackedStringArray("skin_editor", "tool_component")]
-skin_editor = NodePath("../../../../../../../../../..")
-tool_component = NodePath("../../../../../../../../../../Components/ToolComponent")
+[node name="Camera3D" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D/CameraContainer" parent_id_path=PackedInt32Array(256221848, 568293106) index="0" unique_id=1713212233 node_paths=PackedStringArray("skin_editor", "tool_component")]
+skin_editor = NodePath("../../../../../../../../../../..")
+tool_component = NodePath("../../../../../../../../../../../Components/ToolComponent")
 
-[node name="ModelSelector" type="OptionButton" parent="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer" unique_id=426028174]
+[node name="ModelSelector" type="OptionButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer" unique_id=426028174]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -439,11 +470,12 @@ popup/item_0/id = 0
 popup/item_1/text = "Slim Model"
 popup/item_1/id = 1
 
-[node name="ColorPanel" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1303859089]
+[node name="ColorPanel" type="Panel" parent="GlobalMargin/VBoxContainer/HBoxContainer" unique_id=1303859089]
 custom_minimum_size = Vector2(330, 0)
 layout_mode = 2
+theme = ExtResource("2_w2r33")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ColorPanel" unique_id=282153148]
+[node name="VBoxContainer" type="VBoxContainer" parent="GlobalMargin/VBoxContainer/HBoxContainer/ColorPanel" unique_id=282153148]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -451,7 +483,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorPicker" type="ColorPicker" parent="VBoxContainer/HBoxContainer/ColorPanel/VBoxContainer" unique_id=1134368372]
+[node name="ColorPicker" type="ColorPicker" parent="GlobalMargin/VBoxContainer/HBoxContainer/ColorPanel/VBoxContainer" unique_id=1134368372]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -460,10 +492,6 @@ edit_intensity = false
 color_mode = 1
 picker_shape = 2
 sampler_visible = false
-
-[node name="HexButton" type="Button" parent="VBoxContainer/HBoxContainer/ColorPanel/VBoxContainer" unique_id=1144347319]
-layout_mode = 2
-text = "Copy Hex"
 
 [node name="OpenFileDialog" type="FileDialog" parent="." unique_id=1538107073]
 oversampling_override = 1.0
@@ -482,36 +510,39 @@ use_native_dialog = true
 [node name="Windows" type="Node" parent="." unique_id=2085374354]
 
 [node name="AboutWindow" parent="Windows" unique_id=501139318 instance=ExtResource("7_hyoa5")]
+unique_name_in_owner = true
+force_native = false
 
 [node name="NewSkinConfirmationDialog" parent="Windows" unique_id=635232353 node_paths=PackedStringArray("editor") instance=ExtResource("9_sf01n")]
 unique_name_in_owner = true
+force_native = false
 editor = NodePath("../..")
 
-[connection signal="index_pressed" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar/FileMenu" to="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar" method="_on_file_menu_index_pressed"]
-[connection signal="about_to_popup" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar/AboutMenu" to="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/MenuBar" method="_on_about_menu_about_to_popup"]
-[connection signal="item_selected" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/ToolSelector" to="." method="_on_tool_selector_item_selected"]
-[connection signal="item_selected" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/ToolSelector" to="Components/ToolComponent" method="_on_tool_selector_item_selected"]
-[connection signal="pressed" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/UndoButton" to="Components/UndoComponent" method="_on_undo_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/RedoButton" to="Components/UndoComponent" method="_on_redo_button_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer" to="Components/CanvasViewerComponent" method="_on_canvas_viewer_mouse_entered"]
-[connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer" to="Components/CanvasViewerComponent" method="_on_canvas_viewer_mouse_exited"]
-[connection signal="gui_input" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas" to="." method="_on_canvas_gui_input"]
-[connection signal="gui_input" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas" to="Components/ToolComponent" method="_on_canvas_gui_input"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/ButtonsContainer/CenterButton" to="Components/CanvasViewerComponent" method="_on_center_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_body_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/arm_right" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_arm_right_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/arm_left" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_arm_left_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/leg_right" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_leg_right_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/leg_left" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_leg_left_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/head" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_head_pressed"]
-[connection signal="toggled" from="VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/LayerCheckButton" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_layer_check_button_toggled"]
-[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" to="Components/CanvasViewerComponent" method="_on_sub_viewport_container_mouse_entered"]
-[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" to="Components/CanvasViewerComponent" method="_on_sub_viewport_container_mouse_exited"]
-[connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" method="_on_mouse_exited"]
-[connection signal="item_selected" from="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/ModelSelector" to="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_model_selector_item_selected"]
-[connection signal="color_changed" from="VBoxContainer/HBoxContainer/ColorPanel/VBoxContainer/ColorPicker" to="Components/ToolComponent" method="_on_color_picker_color_changed"]
+[connection signal="index_pressed" from="GlobalMargin/VBoxContainer/MenuBar/FileMenu" to="GlobalMargin/VBoxContainer/MenuBar" method="_on_file_menu_index_pressed"]
+[connection signal="about_to_popup" from="GlobalMargin/VBoxContainer/MenuBar/AboutMenu" to="GlobalMargin/VBoxContainer/MenuBar" method="_on_about_menu_about_to_popup"]
+[connection signal="item_selected" from="GlobalMargin/VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/ToolSelector" to="." method="_on_tool_selector_item_selected"]
+[connection signal="item_selected" from="GlobalMargin/VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/ToolSelector" to="Components/ToolComponent" method="_on_tool_selector_item_selected"]
+[connection signal="pressed" from="GlobalMargin/VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/UndoButton" to="Components/UndoComponent" method="_on_undo_button_pressed"]
+[connection signal="pressed" from="GlobalMargin/VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/RedoButton" to="Components/UndoComponent" method="_on_redo_button_pressed"]
+[connection signal="pressed" from="GlobalMargin/VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/CenterButton" to="Components/CanvasViewerComponent" method="_on_center_button_pressed"]
+[connection signal="mouse_entered" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer" to="Components/CanvasViewerComponent" method="_on_canvas_viewer_mouse_entered"]
+[connection signal="mouse_exited" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer" to="Components/CanvasViewerComponent" method="_on_canvas_viewer_mouse_exited"]
+[connection signal="gui_input" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas" to="." method="_on_canvas_gui_input"]
+[connection signal="gui_input" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas" to="Components/ToolComponent" method="_on_canvas_gui_input"]
+[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_body_pressed"]
+[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/arm_right" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_arm_right_pressed"]
+[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/arm_left" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_arm_left_pressed"]
+[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/leg_right" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_leg_right_pressed"]
+[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/leg_left" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_leg_left_pressed"]
+[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/head" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_head_pressed"]
+[connection signal="toggled" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/LayerCheckButton" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_layer_check_button_toggled"]
+[connection signal="mouse_entered" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" to="Components/CanvasViewerComponent" method="_on_sub_viewport_container_mouse_entered"]
+[connection signal="mouse_entered" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" to="Components/CanvasViewerComponent" method="_on_sub_viewport_container_mouse_exited"]
+[connection signal="mouse_exited" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" method="_on_mouse_exited"]
+[connection signal="item_selected" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/ModelSelector" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_model_selector_item_selected"]
+[connection signal="color_changed" from="GlobalMargin/VBoxContainer/HBoxContainer/ColorPanel/VBoxContainer/ColorPicker" to="Components/ToolComponent" method="_on_color_picker_color_changed"]
 [connection signal="file_selected" from="OpenFileDialog" to="." method="_on_open_file_dialog_file_selected"]
 [connection signal="file_selected" from="SaveFileDialog" to="." method="_on_file_saved"]
 
-[editable path="VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D"]
+[editable path="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D"]

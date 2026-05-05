@@ -1,12 +1,11 @@
 extends MenuBar
 
-@onready var editor: TextureEditor = $"../../../../.."
+@export var editor: TextureEditor
 
 @onready var file_menu: PopupMenu = $FileMenu
 @onready var about_menu: PopupMenu = $AboutMenu
 
-@onready var about_window: Window = $"../../../../../Windows/AboutWindow"
-
+@onready var about_window: Window = %AboutWindow
 
 
 func _on_file_menu_index_pressed(index: int) -> void:

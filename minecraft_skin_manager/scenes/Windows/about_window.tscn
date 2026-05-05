@@ -1,25 +1,31 @@
 [gd_scene format=3 uid="uid://bn1nuiggj0jdf"]
 
 [ext_resource type="Script" uid="uid://mw15q8rmtjre" path="res://scripts/about_window.gd" id="1_b02gk"]
-[ext_resource type="Theme" uid="uid://v01qaqdby2uw" path="res://resources/themes/dark_theme.tres" id="1_hy0c6"]
 
 [node name="AboutWindow" type="Window" unique_id=501139318]
 oversampling_override = 1.0
 title = "About"
 initial_position = 1
 size = Vector2i(400, 250)
-visible = false
 force_native = true
 min_size = Vector2i(400, 250)
 script = ExtResource("1_b02gk")
 
-[node name="Panel" type="Panel" parent="." unique_id=1061036084]
+[node name="BG" type="ColorRect" parent="." unique_id=811901477]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_hy0c6")
+color = Color(0.078431375, 0.078431375, 0.078431375, 1)
+
+[node name="Panel" type="Panel" parent="." unique_id=1061036084]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="title" type="RichTextLabel" parent="Panel" unique_id=853497639]
 custom_minimum_size = Vector2(0, 30.76)

@@ -4,21 +4,83 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8u1b"]
 bg_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 expand_margin_left = 6.0
 expand_margin_right = 6.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8lcx"]
 bg_color = Color(0.078431375, 0.078431375, 0.078431375, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 expand_margin_left = 6.0
 expand_margin_right = 6.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wfyh"]
-bg_color = Color(0.21960784, 0.21960784, 0.21960784, 1)
+bg_color = Color(0.039215688, 0.039215688, 0.039215688, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 expand_margin_left = 6.0
 expand_margin_right = 6.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifk6q"]
+bg_color = Color(0.21960784, 0.21960784, 0.21960784, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w0awp"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6x2i"]
+bg_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 2
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_saxfq"]
-bg_color = Color(0.078431375, 0.078431375, 0.078431375, 1)
+bg_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qegse"]
+bg_color = Color(0.21960784, 0.21960784, 0.21960784, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_v8lcx"]
 color = Color(0.41598046, 0.41598043, 0.4159804, 1)
@@ -33,7 +95,16 @@ grow_end = -6.0
 thickness = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5y23t"]
-bg_color = Color(0.11858145, 0.11858136, 0.11858138, 1)
+bg_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28235295, 0.27450982, 0.26666668, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_etfu1"]
 color = Color(0.41568628, 0.41568628, 0.41568628, 1)
@@ -51,7 +122,11 @@ MenuBar/styles/disabled = SubResource("StyleBoxEmpty_v8lcx")
 MenuBar/styles/hover = SubResource("StyleBoxFlat_l8u1b")
 MenuBar/styles/normal = SubResource("StyleBoxFlat_v8lcx")
 MenuBar/styles/pressed = SubResource("StyleBoxFlat_0wfyh")
+OptionButton/styles/hover = SubResource("StyleBoxFlat_ifk6q")
+OptionButton/styles/normal = SubResource("StyleBoxFlat_w0awp")
+OptionButton/styles/pressed = SubResource("StyleBoxFlat_f6x2i")
 Panel/styles/panel = SubResource("StyleBoxFlat_saxfq")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_qegse")
 PopupMenu/styles/labeled_separator_left = SubResource("StyleBoxLine_v8lcx")
 PopupMenu/styles/labeled_separator_right = SubResource("StyleBoxLine_l8u1b")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_5y23t")

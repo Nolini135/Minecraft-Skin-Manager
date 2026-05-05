@@ -1,10 +1,10 @@
 extends SubViewportContainer
 class_name SkinEditorViewer
 
-@onready var editor: TextureEditor = $"../../../../../.."
+@onready var editor: TextureEditor = $"../../../../../../.."
 
 
-@onready var skin_viewer_3d: Node3D = $SubViewport/SkinViewer3D
+@onready var skin_viewer_3d: Node3D = %SkinViewer3D
 @onready var camera_container: Node3D = $SubViewport/SkinViewer3D/CameraContainer
 @onready var skin_wide = $SubViewport/SkinViewer3D/wide_editor
 @onready var skin_slim = $SubViewport/SkinViewer3D/slim_editor
