@@ -1,6 +1,7 @@
 class_name ToolComponent extends Node
 
 @export var skin_editor: TextureEditor
+@export var canvas_viewer_component: CanvasViewerComponent
 
 @onready var tool_selector: OptionButton = %ToolSelector
 
@@ -22,6 +23,8 @@ var selected_tool: String = "pen"
 
 
 func _input(event: InputEvent) -> void:
+	update_cursor()
+	
 	# Dynamic color picker
 	if Input.is_action_just_pressed("dynamic_picker"):
 		old_tool = selected_tool
@@ -45,7 +48,6 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action("shortcut_bucket"):
 		selected_tool = "bucket"
 		tool_selector.select(3)
-	update_cursor()
 	
 	# Dynamic color picker (Press/Release ALT)
 	if Input.is_action_just_pressed("dynamic_picker"):
@@ -67,7 +69,7 @@ func _on_tool_selector_item_selected(index: int) -> void:
 			selected_tool = "color_picker"
 		3:
 			selected_tool = "bucket"
-	update_cursor()
+
 
 
 func _on_canvas_gui_input(event: InputEvent) -> void:
@@ -87,7 +89,11 @@ func update_cursor():
 	var image = cursor_image.get(selected_tool)
 	var hotspot = cursor_hotspot.get(selected_tool)
 	
-	Input.set_custom_mouse_cursor(image, Input.CURSOR_ARROW, hotspot)
+	if canvas_viewer_component.is_mouse_on_canvas or canvas_viewer_component.is_mouse_on_skin_viewer:
+		Input.set_custom_mouse_cursor(image, Input.CURSOR_ARROW, hotspot)
+	else:
+		Input.set_custom_mouse_cursor(null)
+
 
 
 func _on_color_picker_color_changed(color: Color) -> void:

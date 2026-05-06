@@ -6,24 +6,20 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d7tti"]
 bg_color = Color(0.078431375, 0.078431375, 0.078431375, 1)
 
-[sub_resource type="Theme" id="Theme_mhlao"]
-
 [node name="NewSkinConfirmationDialog" type="ConfirmationDialog" unique_id=635232353]
 oversampling_override = 1.0
 title = "Create New Skin"
 initial_position = 1
 size = Vector2i(450, 350)
-visible = true
 wrap_controls = false
 force_native = true
+theme = ExtResource("2_mhlao")
 ok_button_text = "New Skin"
 script = ExtResource("1_d7tti")
 
 [node name="Panel" type="Panel" parent="." unique_id=1037959976]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 442.0
-offset_bottom = 301.0
+offset_right = 450.0
+offset_bottom = 315.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_d7tti")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=564481062]
@@ -53,14 +49,17 @@ text = "Type: "
 [node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/CavasOption" unique_id=134599819]
 custom_minimum_size = Vector2(164, 0)
 layout_mode = 2
+theme = ExtResource("2_mhlao")
 selected = 0
-item_count = 3
+item_count = 4
 popup/item_0/text = "skin template"
 popup/item_0/id = 0
 popup/item_1/text = "solid color"
 popup/item_1/id = 1
 popup/item_2/text = "empty canvas"
 popup/item_2/id = 2
+popup/item_3/text = "from username"
+popup/item_3/id = 3
 
 [node name="CanvasSizeOption" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1323286333]
 layout_mode = 2
@@ -74,6 +73,7 @@ text = "Size: "
 [node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/CanvasSizeOption" unique_id=223176001]
 custom_minimum_size = Vector2(164, 0)
 layout_mode = 2
+theme = ExtResource("2_mhlao")
 selected = 0
 item_count = 2
 popup/item_0/text = "x64"
@@ -93,6 +93,7 @@ text = "Model: "
 [node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/SkinModelOption" unique_id=980654836]
 custom_minimum_size = Vector2(164, 0)
 layout_mode = 2
+theme = ExtResource("2_mhlao")
 selected = 0
 item_count = 2
 popup/item_0/text = "Wide"
@@ -128,6 +129,7 @@ text = "Skin Template Options"
 
 [node name="OptionButton" type="OptionButton" parent="Panel/MarginContainer/VBoxContainer/TemplatePanel/MarginContainer/VBoxContainer" unique_id=1273907760]
 layout_mode = 2
+theme = ExtResource("2_mhlao")
 selected = 0
 item_count = 9
 popup/item_0/text = "Alex"
@@ -194,7 +196,7 @@ color = Color(1, 1, 1, 1)
 visible = false
 custom_minimum_size = Vector2(0, 126)
 layout_mode = 2
-theme = SubResource("Theme_mhlao")
+theme = ExtResource("2_mhlao")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/EmptyCavasPanel" unique_id=472345081]
 layout_mode = 1
@@ -217,4 +219,37 @@ layout_mode = 2
 size_flags_vertical = 0
 text = "Empty Canvas Options"
 
+[node name="GetFromUserPanel" type="Panel" parent="Panel/MarginContainer/VBoxContainer" unique_id=2017899932]
+visible = false
+custom_minimum_size = Vector2(0, 126)
+layout_mode = 2
+theme = ExtResource("2_mhlao")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/GetFromUserPanel" unique_id=393111897]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/GetFromUserPanel/MarginContainer" unique_id=586081785]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/GetFromUserPanel/MarginContainer/VBoxContainer" unique_id=1944162094]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Get From Username Options"
+
+[node name="UsernameInput" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/GetFromUserPanel/MarginContainer/VBoxContainer" unique_id=2001566848]
+layout_mode = 2
+theme = ExtResource("2_mhlao")
+placeholder_text = "Search From Username"
+
 [connection signal="confirmed" from="." to="." method="_on_confirmed"]
+[connection signal="item_selected" from="Panel/MarginContainer/VBoxContainer/CavasOption/OptionButton" to="." method="_on_option_button_item_selected"]

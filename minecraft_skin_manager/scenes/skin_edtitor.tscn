@@ -69,10 +69,11 @@ color = Color(0.078431375, 0.078431375, 0.078431375, 1)
 
 [node name="Components" type="Node" parent="." unique_id=1819342850]
 
-[node name="ToolComponent" type="Node" parent="Components" unique_id=691228896 node_paths=PackedStringArray("skin_editor")]
+[node name="ToolComponent" type="Node" parent="Components" unique_id=691228896 node_paths=PackedStringArray("skin_editor", "canvas_viewer_component")]
 unique_name_in_owner = true
 script = ExtResource("2_bwcg2")
 skin_editor = NodePath("../..")
+canvas_viewer_component = NodePath("../CanvasViewerComponent")
 hold_click_tools = Array[String](["pen", "eraser"])
 single_click_tools = Array[String](["pen", "eraser", "bucket", "color_picker"])
 cursor_image = Dictionary[String, CompressedTexture2D]({
@@ -126,7 +127,6 @@ editor = NodePath("../../..")
 unique_name_in_owner = true
 oversampling_override = 1.0
 title = "File"
-visible = true
 theme = ExtResource("2_w2r33")
 item_count = 3
 item_0/text = "New"
@@ -511,11 +511,10 @@ use_native_dialog = true
 
 [node name="AboutWindow" parent="Windows" unique_id=501139318 instance=ExtResource("7_hyoa5")]
 unique_name_in_owner = true
-force_native = false
+force_native = true
 
 [node name="NewSkinConfirmationDialog" parent="Windows" unique_id=635232353 node_paths=PackedStringArray("editor") instance=ExtResource("9_sf01n")]
 unique_name_in_owner = true
-force_native = false
 editor = NodePath("../..")
 
 [connection signal="index_pressed" from="GlobalMargin/VBoxContainer/MenuBar/FileMenu" to="GlobalMargin/VBoxContainer/MenuBar" method="_on_file_menu_index_pressed"]

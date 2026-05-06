@@ -7,7 +7,7 @@ oversampling_override = 1.0
 title = "About"
 initial_position = 1
 size = Vector2i(400, 250)
-force_native = true
+visible = false
 min_size = Vector2i(400, 250)
 script = ExtResource("1_b02gk")
 
