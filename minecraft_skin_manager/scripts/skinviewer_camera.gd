@@ -15,7 +15,8 @@ func _input(event: InputEvent) -> void:
 	rc_drawing_input(event)
 	
 	handle_zoom(event)
-	handle_cam_rotation(event)
+	handle_model_rotation(event)
+	#handle_cam_rotation(event)
 
 ############## RayCast Drawing ##############
 
@@ -97,7 +98,7 @@ func handle_zoom(event: InputEvent):
 	elif event.is_action_pressed("scroll_down"):
 		position.z += 0.25
 
-func handle_cam_rotation(event: InputEvent):
+func handle_model_rotation(event: InputEvent):
 	if event is InputEventMouseMotion:
 		if Input.is_action_pressed("right_click"):
 			container.rotation.y -= event.relative.x * 0.01

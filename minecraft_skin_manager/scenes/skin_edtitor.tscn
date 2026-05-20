@@ -23,6 +23,12 @@
 [ext_resource type="Shader" uid="uid://xmx42gatdn87" path="res://shaders/grid_shader.gdshader" id="9_xsxd8"]
 [ext_resource type="Texture2D" uid="uid://cve3asjkoli4c" path="res://assets/buttons/center_canvas.png" id="17_p5iwi"]
 [ext_resource type="Texture2D" uid="uid://byuyokugqyb1h" path="res://assets/buttons/center_canvas_hover.png" id="18_k2puy"]
+[ext_resource type="Texture2D" uid="uid://bhv8f2eoruxg5" path="res://assets/buttons/personnage_roblox/body.png" id="19_k2puy"]
+[ext_resource type="Texture2D" uid="uid://ihgfnowcx3pr" path="res://assets/buttons/personnage_roblox/arm_right.png" id="20_0vp7k"]
+[ext_resource type="Texture2D" uid="uid://bjdohkc3ii4cu" path="res://assets/buttons/personnage_roblox/arm_left.png" id="21_jayao"]
+[ext_resource type="Texture2D" uid="uid://b50gxoqbprhqp" path="res://assets/buttons/personnage_roblox/right_leg.png" id="22_0ffk6"]
+[ext_resource type="Texture2D" uid="uid://bw2mcxcca57mt" path="res://assets/buttons/personnage_roblox/left_leg.png" id="23_jyqod"]
+[ext_resource type="Texture2D" uid="uid://dcfaww2dywar3" path="res://assets/buttons/personnage_roblox/head.png" id="24_wa2l0"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_3xo5m"]
 device = -1
@@ -48,6 +54,268 @@ shader_parameter/line_width = 1.0
 shader_parameter/cell_size = 10.0
 shader_parameter/line_color = Color(0, 0, 0, 1)
 shader_parameter/grid_offset = Vector2(0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xmmi"]
+atlas = ExtResource("19_k2puy")
+region = Rect2(0, 0, 10, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plbmq"]
+atlas = ExtResource("20_0vp7k")
+region = Rect2(0, 0, 4, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ai5tf"]
+atlas = ExtResource("21_jayao")
+region = Rect2(0, 0, 4, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8wfj"]
+atlas = ExtResource("22_0ffk6")
+region = Rect2(0, 0, 5, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6r7jm"]
+atlas = ExtResource("23_jyqod")
+region = Rect2(0, 0, 5, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdc4n"]
+atlas = ExtResource("24_wa2l0")
+region = Rect2(0, 0, 10, 11)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etfu1"]
+bg_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ifoc"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6784314, 0.6784314, 0.6784314, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 2
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cx1ul"]
+bg_color = Color(0.21960784, 0.21960784, 0.21960784, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 2
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7shl5"]
+bg_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 2
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hiq2a"]
+bg_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.4, 0.4, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_right = 2.0
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grjq0"]
+bg_color = Color(0.21960784, 0.21960784, 0.21960784, 1)
+border_width_top = 1
+border_color = Color(0.6784314, 0.6784314, 0.6784314, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_right = 2.0
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gv6j6"]
+bg_color = Color(0.21960784, 0.21960784, 0.21960784, 1)
+border_width_top = 1
+border_color = Color(0.6784314, 0.6784314, 0.6784314, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_right = 2.0
+shadow_size = 1
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v8lcx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8u1b"]
+bg_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8lcx"]
+bg_color = Color(0.078431375, 0.078431375, 0.078431375, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wfyh"]
+bg_color = Color(0.039215688, 0.039215688, 0.039215688, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifk6q"]
+bg_color = Color(0.21960784, 0.21960784, 0.21960784, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w0awp"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6x2i"]
+bg_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_saxfq"]
+bg_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qegse"]
+bg_color = Color(0.21960784, 0.21960784, 0.21960784, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_v8lcx"]
+color = Color(0.41598046, 0.41598043, 0.4159804, 1)
+grow_begin = -6.0
+grow_end = -6.0
+thickness = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_l8u1b"]
+color = Color(0.41568628, 0.41568628, 0.41568628, 1)
+grow_begin = -6.0
+grow_end = -6.0
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5y23t"]
+bg_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28235295, 0.27450982, 0.26666668, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_etfu1"]
+color = Color(0.41568628, 0.41568628, 0.41568628, 1)
+grow_begin = -6.0
+grow_end = -6.0
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vmqt"]
+bg_color = Color(0.078431375, 0.078431375, 0.078431375, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryo58"]
+bg_color = Color(0.078431375, 0.078431375, 0.078431375, 1)
+
+[sub_resource type="Theme" id="Theme_p5iwi"]
+AcceptDialog/styles/panel = SubResource("StyleBoxFlat_etfu1")
+Button/styles/focus = SubResource("StyleBoxFlat_7ifoc")
+Button/styles/hover = SubResource("StyleBoxFlat_cx1ul")
+Button/styles/normal = SubResource("StyleBoxFlat_7shl5")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_hiq2a")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_grjq0")
+LineEdit/styles/read_only = SubResource("StyleBoxFlat_gv6j6")
+MenuBar/constants/h_separation = 16
+MenuBar/font_sizes/font_size = 22
+MenuBar/styles/disabled = SubResource("StyleBoxEmpty_v8lcx")
+MenuBar/styles/hover = SubResource("StyleBoxFlat_l8u1b")
+MenuBar/styles/normal = SubResource("StyleBoxFlat_v8lcx")
+MenuBar/styles/pressed = SubResource("StyleBoxFlat_0wfyh")
+OptionButton/styles/hover = SubResource("StyleBoxFlat_ifk6q")
+OptionButton/styles/normal = SubResource("StyleBoxFlat_w0awp")
+OptionButton/styles/pressed = SubResource("StyleBoxFlat_f6x2i")
+Panel/styles/panel = SubResource("StyleBoxFlat_saxfq")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_qegse")
+PopupMenu/styles/labeled_separator_left = SubResource("StyleBoxLine_v8lcx")
+PopupMenu/styles/labeled_separator_right = SubResource("StyleBoxLine_l8u1b")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_5y23t")
+PopupMenu/styles/separator = SubResource("StyleBoxLine_etfu1")
+Window/styles/embedded_border = SubResource("StyleBoxFlat_3vmqt")
+Window/styles/embedded_unfocused_border = SubResource("StyleBoxFlat_ryo58")
 
 [node name="SkinEdtitor" type="Control" unique_id=2019968350]
 layout_mode = 3
@@ -327,8 +595,9 @@ custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme = ExtResource("2_w2r33")
 
-[node name="body" type="Button" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" unique_id=9196960]
-custom_minimum_size = Vector2(64, 90)
+[node name="body" type="TextureButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" unique_id=1425211243]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 83)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -338,59 +607,71 @@ anchor_bottom = 0.5
 offset_left = -32.0
 offset_top = -45.0
 offset_right = 32.0
-offset_bottom = 45.0
+offset_bottom = 38.0
 grow_horizontal = 2
 grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_3xmmi")
+stretch_mode = 4
 
-[node name="arm_right" type="Button" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=1406013612]
+[node name="arm_right" type="TextureButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=868883410]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -34.0
-offset_top = -45.0
-offset_right = -4.0
-offset_bottom = 45.0
+offset_left = -31.0
+offset_top = -42.0
+offset_right = -6.0
+offset_bottom = 40.0
 grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_plbmq")
+stretch_mode = 4
 
-[node name="arm_left" type="Button" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=289673275]
+[node name="arm_left" type="TextureButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=1796194436]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 4.0
-offset_top = -45.0
-offset_right = 34.0
-offset_bottom = 45.0
+offset_left = 6.0
+offset_top = -42.0
+offset_right = 32.0
+offset_bottom = 41.0
 grow_horizontal = 0
 grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_ai5tf")
+stretch_mode = 4
 
-[node name="leg_right" type="Button" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=2021922495]
+[node name="leg_right" type="TextureButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=220954864]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = 4.0
-offset_right = 30.0
-offset_bottom = 94.0
+offset_left = 2.0
+offset_top = 7.0
+offset_right = 32.0
+offset_bottom = 85.5
 grow_vertical = 0
+texture_normal = SubResource("AtlasTexture_u8wfj")
+stretch_mode = 4
 
-[node name="leg_left" type="Button" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=314552586]
+[node name="leg_left" type="TextureButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=1650014329]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -30.0
-offset_top = 4.0
-offset_bottom = 94.0
+offset_left = -32.0
+offset_top = 7.0
+offset_right = -2.0
+offset_bottom = 85.5
 grow_horizontal = 0
 grow_vertical = 0
+texture_normal = SubResource("AtlasTexture_6r7jm")
+stretch_mode = 4
 
-[node name="head" type="Button" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=360793621]
+[node name="head" type="TextureButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=1011615650]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 1
 anchors_preset = -1
@@ -398,11 +679,13 @@ anchor_left = 0.5
 anchor_top = 0.208
 anchor_right = 0.5
 anchor_bottom = 0.208
-offset_left = -30.0
-offset_top = -82.72
-offset_right = 30.0
-offset_bottom = -22.720001
+offset_left = -31.0
+offset_top = -91.71999
+offset_right = 31.0
+offset_bottom = -22.764
 grow_horizontal = 2
+texture_normal = SubResource("AtlasTexture_wdc4n")
+stretch_mode = 4
 
 [node name="LayerCheckButton" type="CheckButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" unique_id=257355628]
 layout_mode = 1
@@ -448,11 +731,17 @@ physics_object_picking = true
 size = Vector2i(936, 741)
 render_target_update_mode = 4
 
-[node name="SkinViewer3D" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport" unique_id=256221848 node_paths=PackedStringArray("wide_editor", "slim_editor") instance=ExtResource("4_w2r33")]
+[node name="SkinViewer3D" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport" unique_id=256221848 node_paths=PackedStringArray("wide_editor", "slim_editor", "head_button", "body_button", "arm_left_button", "arm_right_button", "leg_left_button", "leg_right_button") instance=ExtResource("4_w2r33")]
 unique_name_in_owner = true
 script = ExtResource("5_0yuvx")
 wide_editor = NodePath("wide_editor")
 slim_editor = NodePath("slim_editor")
+head_button = NodePath("../../../../../VSplitContainer/LayersPanel/body/head")
+body_button = NodePath("../../../../../VSplitContainer/LayersPanel/body")
+arm_left_button = NodePath("../../../../../VSplitContainer/LayersPanel/body/arm_left")
+arm_right_button = NodePath("../../../../../VSplitContainer/LayersPanel/body/arm_right")
+leg_left_button = NodePath("../../../../../VSplitContainer/LayersPanel/body/leg_left")
+leg_right_button = NodePath("../../../../../VSplitContainer/LayersPanel/body/leg_right")
 
 [node name="Camera3D" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D/CameraContainer" parent_id_path=PackedInt32Array(256221848, 568293106) index="0" unique_id=1713212233 node_paths=PackedStringArray("skin_editor", "tool_component")]
 skin_editor = NodePath("../../../../../../../../../../..")
@@ -473,7 +762,7 @@ popup/item_1/id = 1
 [node name="ColorPanel" type="Panel" parent="GlobalMargin/VBoxContainer/HBoxContainer" unique_id=1303859089]
 custom_minimum_size = Vector2(330, 0)
 layout_mode = 2
-theme = ExtResource("2_w2r33")
+theme = SubResource("Theme_p5iwi")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GlobalMargin/VBoxContainer/HBoxContainer/ColorPanel" unique_id=282153148]
 layout_mode = 1
