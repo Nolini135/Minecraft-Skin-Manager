@@ -23,6 +23,7 @@
 [ext_resource type="Shader" uid="uid://xmx42gatdn87" path="res://shaders/grid_shader.gdshader" id="9_xsxd8"]
 [ext_resource type="Texture2D" uid="uid://cve3asjkoli4c" path="res://assets/buttons/center_canvas.png" id="17_p5iwi"]
 [ext_resource type="Texture2D" uid="uid://byuyokugqyb1h" path="res://assets/buttons/center_canvas_hover.png" id="18_k2puy"]
+[ext_resource type="Script" uid="uid://dylpa85h4qqkw" path="res://scripts/skin_layers.gd" id="19_jayao"]
 [ext_resource type="Texture2D" uid="uid://bhv8f2eoruxg5" path="res://assets/buttons/personnage_roblox/body.png" id="19_k2puy"]
 [ext_resource type="Texture2D" uid="uid://ihgfnowcx3pr" path="res://assets/buttons/personnage_roblox/arm_right.png" id="20_0vp7k"]
 [ext_resource type="Texture2D" uid="uid://bjdohkc3ii4cu" path="res://assets/buttons/personnage_roblox/arm_left.png" id="21_jayao"]
@@ -532,8 +533,8 @@ stretch_mode = 1
 
 [node name="CanvasViewer" type="Control" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer" unique_id=637865664]
 unique_name_in_owner = true
-clip_contents = true
 custom_minimum_size = Vector2(100, 100)
+clip_contents = true
 layout_mode = 2
 
 [node name="Control" type="Control" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer" unique_id=1540404519]
@@ -590,12 +591,41 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="LayersPanel" type="Panel" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer" unique_id=704928007]
+[node name="LayersPanel" type="Panel" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer" unique_id=704928007 node_paths=PackedStringArray("wide_editor", "slim_editor", "head_button", "body_button", "arm_left_button", "arm_right_button", "leg_left_button", "leg_right_button")]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme = ExtResource("2_w2r33")
+script = ExtResource("19_jayao")
+wide_editor = NodePath("../../3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D/wide_editor")
+slim_editor = NodePath("../../3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D/slim_editor")
+head_button = NodePath("body/head")
+body_button = NodePath("body")
+arm_left_button = NodePath("body/arm_left")
+arm_right_button = NodePath("body/arm_right")
+leg_left_button = NodePath("body/leg_left")
+leg_right_button = NodePath("body/leg_right")
+
+[node name="ModelSelector" type="OptionButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" unique_id=426028174]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -46.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+selected = 0
+item_count = 2
+popup/item_0/text = "Wide Model"
+popup/item_0/id = 0
+popup/item_1/text = "Slim Model"
+popup/item_1/id = 1
 
 [node name="body" type="TextureButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" unique_id=1425211243]
+self_modulate = Color(0.735357, 0.735357, 0.735357, 1)
 texture_filter = 1
 custom_minimum_size = Vector2(64, 83)
 layout_mode = 1
@@ -614,6 +644,7 @@ texture_normal = SubResource("AtlasTexture_3xmmi")
 stretch_mode = 4
 
 [node name="arm_right" type="TextureButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=868883410]
+self_modulate = Color(0.735357, 0.735357, 0.735357, 1)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -627,6 +658,7 @@ texture_normal = SubResource("AtlasTexture_plbmq")
 stretch_mode = 4
 
 [node name="arm_left" type="TextureButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=1796194436]
+self_modulate = Color(0.735357, 0.735357, 0.735357, 1)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -643,6 +675,7 @@ texture_normal = SubResource("AtlasTexture_ai5tf")
 stretch_mode = 4
 
 [node name="leg_right" type="TextureButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=220954864]
+self_modulate = Color(0.735357, 0.735357, 0.735357, 1)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -656,6 +689,7 @@ texture_normal = SubResource("AtlasTexture_u8wfj")
 stretch_mode = 4
 
 [node name="leg_left" type="TextureButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=1650014329]
+self_modulate = Color(0.735357, 0.735357, 0.735357, 1)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -672,6 +706,7 @@ texture_normal = SubResource("AtlasTexture_6r7jm")
 stretch_mode = 4
 
 [node name="head" type="TextureButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" unique_id=1011615650]
+self_modulate = Color(0.735357, 0.735357, 0.735357, 1)
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 1
 anchors_preset = -1
@@ -688,6 +723,7 @@ texture_normal = SubResource("AtlasTexture_wdc4n")
 stretch_mode = 4
 
 [node name="LayerCheckButton" type="CheckButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" unique_id=257355628]
+custom_minimum_size = Vector2(0, 85)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -747,18 +783,6 @@ leg_right_button = NodePath("../../../../../VSplitContainer/LayersPanel/body/leg
 skin_editor = NodePath("../../../../../../../../../../..")
 tool_component = NodePath("../../../../../../../../../../../Components/ToolComponent")
 
-[node name="ModelSelector" type="OptionButton" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer" unique_id=426028174]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-selected = 0
-item_count = 2
-popup/item_0/text = "Wide Model"
-popup/item_0/id = 0
-popup/item_1/text = "Slim Model"
-popup/item_1/id = 1
-
 [node name="ColorPanel" type="Panel" parent="GlobalMargin/VBoxContainer/HBoxContainer" unique_id=1303859089]
 custom_minimum_size = Vector2(330, 0)
 layout_mode = 2
@@ -817,18 +841,30 @@ editor = NodePath("../..")
 [connection signal="mouse_exited" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer" to="Components/CanvasViewerComponent" method="_on_canvas_viewer_mouse_exited"]
 [connection signal="gui_input" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas" to="." method="_on_canvas_gui_input"]
 [connection signal="gui_input" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas" to="Components/ToolComponent" method="_on_canvas_gui_input"]
-[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_body_pressed"]
-[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/arm_right" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_arm_right_pressed"]
-[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/arm_left" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_arm_left_pressed"]
-[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/leg_right" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_leg_right_pressed"]
-[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/leg_left" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_leg_left_pressed"]
-[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/head" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_head_pressed"]
-[connection signal="toggled" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/LayerCheckButton" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_layer_check_button_toggled"]
+[connection signal="item_selected" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/ModelSelector" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_model_selector_item_selected"]
+[connection signal="mouse_entered" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_body_mouse_entered"]
+[connection signal="mouse_exited" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_body_mouse_exited"]
+[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_body_pressed"]
+[connection signal="mouse_entered" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/arm_right" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_arm_right_mouse_entered"]
+[connection signal="mouse_exited" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/arm_right" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_arm_right_mouse_exited"]
+[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/arm_right" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_arm_right_pressed"]
+[connection signal="mouse_entered" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/arm_left" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_arm_left_mouse_entered"]
+[connection signal="mouse_exited" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/arm_left" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_arm_left_mouse_exited"]
+[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/arm_left" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_arm_left_pressed"]
+[connection signal="mouse_entered" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/leg_right" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_leg_right_mouse_entered"]
+[connection signal="mouse_exited" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/leg_right" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_leg_right_mouse_exited"]
+[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/leg_right" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_leg_right_pressed"]
+[connection signal="mouse_entered" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/leg_left" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_leg_left_mouse_entered"]
+[connection signal="mouse_exited" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/leg_left" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_leg_left_mouse_exited"]
+[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/leg_left" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_leg_left_pressed"]
+[connection signal="mouse_entered" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/head" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_head_mouse_entered"]
+[connection signal="mouse_exited" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/head" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_head_mouse_exited"]
+[connection signal="pressed" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/body/head" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_head_pressed"]
+[connection signal="toggled" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/LayerCheckButton" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" method="_on_layer_check_button_toggled"]
 [connection signal="mouse_entered" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" to="Components/CanvasViewerComponent" method="_on_sub_viewport_container_mouse_entered"]
 [connection signal="mouse_entered" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" to="Components/CanvasViewerComponent" method="_on_sub_viewport_container_mouse_exited"]
 [connection signal="mouse_exited" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" method="_on_mouse_exited"]
-[connection signal="item_selected" from="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/ModelSelector" to="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport/SkinViewer3D" method="_on_model_selector_item_selected"]
 [connection signal="color_changed" from="GlobalMargin/VBoxContainer/HBoxContainer/ColorPanel/VBoxContainer/ColorPicker" to="Components/ToolComponent" method="_on_color_picker_color_changed"]
 [connection signal="file_selected" from="OpenFileDialog" to="." method="_on_open_file_dialog_file_selected"]
 [connection signal="file_selected" from="SaveFileDialog" to="." method="_on_file_saved"]
