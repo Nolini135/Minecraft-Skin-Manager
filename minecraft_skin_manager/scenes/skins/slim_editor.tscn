@@ -480,10 +480,9 @@ mesh = SubResource("ArrayMesh_urv8p")
 shape = SubResource("ConcavePolygonShape3D_avghl")
 
 [node name="Right Arm2" type="Node3D" parent="Waist" unique_id=1255608058]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
 
 [node name="Right Arm" type="MeshInstance3D" parent="Waist/Right Arm2" unique_id=808660429]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3125, -1.375, 0)
 mesh = SubResource("ArrayMesh_lutwj")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Waist/Right Arm2/Right Arm" unique_id=1706794963]
@@ -492,7 +491,6 @@ mesh = SubResource("ArrayMesh_lutwj")
 shape = SubResource("ConcavePolygonShape3D_44n0n")
 
 [node name="Right Arm Layer" type="MeshInstance3D" parent="Waist/Right Arm2" unique_id=38497203]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3125, -1.375, 0)
 mesh = SubResource("ArrayMesh_lnc1r")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Waist/Right Arm2/Right Arm Layer" unique_id=1581367523]
@@ -501,10 +499,9 @@ mesh = SubResource("ArrayMesh_lnc1r")
 shape = SubResource("ConcavePolygonShape3D_7e16u")
 
 [node name="Left Arm2" type="Node3D" parent="Waist" unique_id=1361065014]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3125, 0.625, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
 
 [node name="Left Arm" type="MeshInstance3D" parent="Waist/Left Arm2" unique_id=801548287]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3125, -1.375, 0)
 mesh = SubResource("ArrayMesh_uk1id")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Waist/Left Arm2/Left Arm" unique_id=1693572910]
@@ -513,7 +510,6 @@ mesh = SubResource("ArrayMesh_uk1id")
 shape = SubResource("ConcavePolygonShape3D_qxpuu")
 
 [node name="Left Arm Layer" type="MeshInstance3D" parent="Waist/Left Arm2" unique_id=2035841588]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3125, -1.375, 0)
 mesh = SubResource("ArrayMesh_qh4uf")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Waist/Left Arm2/Left Arm Layer" unique_id=736255050]
@@ -522,10 +518,8 @@ mesh = SubResource("ArrayMesh_qh4uf")
 shape = SubResource("ConcavePolygonShape3D_38e8j")
 
 [node name="Right Leg2" type="Node3D" parent="." unique_id=2050950538]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11875, 0.75, 0)
 
 [node name="Right Leg" type="MeshInstance3D" parent="Right Leg2" unique_id=2022671886]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11875, -0.75, 0)
 mesh = SubResource("ArrayMesh_4jpca")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Right Leg2/Right Leg" unique_id=239341082]
@@ -534,7 +528,6 @@ mesh = SubResource("ArrayMesh_4jpca")
 shape = SubResource("ConcavePolygonShape3D_58u7o")
 
 [node name="Right Leg Layer" type="MeshInstance3D" parent="Right Leg2" unique_id=115177259]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11875, -0.75, 0)
 mesh = SubResource("ArrayMesh_b2o45")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Right Leg2/Right Leg Layer" unique_id=1666992365]
@@ -543,10 +536,8 @@ mesh = SubResource("ArrayMesh_b2o45")
 shape = SubResource("ConcavePolygonShape3D_l7jpj")
 
 [node name="Left Leg2" type="Node3D" parent="." unique_id=818941569]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11875, 0.75, 0)
 
 [node name="Left Leg" type="MeshInstance3D" parent="Left Leg2" unique_id=1848150335]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11875, -0.75, 0)
 mesh = SubResource("ArrayMesh_86up7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Left Leg2/Left Leg" unique_id=1953118279]
@@ -555,7 +546,6 @@ mesh = SubResource("ArrayMesh_86up7")
 shape = SubResource("ConcavePolygonShape3D_31s5v")
 
 [node name="Left Leg Layer" type="MeshInstance3D" parent="Left Leg2" unique_id=789222285]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11875, -0.75, 0)
 mesh = SubResource("ArrayMesh_u7myg")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Left Leg2/Left Leg Layer" unique_id=1933970726]

@@ -56,10 +56,14 @@ func shoot_ray():
 		if uv:
 			skin_editor.draw_from_uv(uv)
 
-func get_mesh_uv_from_ray(mesh: MeshInstance3D, origin: Vector3, dir: Vector3):
+func get_mesh_uv_from_ray(mesh: MeshInstance3D, origin: Vector3, dir_end: Vector3):
 	var closest_dist = INF
 	var final_uv = null
 	var mesh_res: Mesh = mesh.mesh
+	
+	var to_local = mesh.global_transform.affine_inverse()
+	var local_origin = to_local * origin
+	var local_dir = (to_local.basis * (dir_end - origin)).normalized()
 	
 	for s in mesh_res.get_surface_count():
 		var arrays = mesh_res.surface_get_arrays(s)
@@ -72,18 +76,20 @@ func get_mesh_uv_from_ray(mesh: MeshInstance3D, origin: Vector3, dir: Vector3):
 			var b = verts[indices[i+1]]
 			var c = verts[indices[i+2]]
 			
-			var hit = Geometry3D.ray_intersects_triangle(origin, dir, a, b, c)
+			# Ignore les faces qui ne font pas face à la caméra
+			var face_normal = (b - a).cross(c - a).normalized()
+			if face_normal.dot(local_dir) <= 0:
+				continue
+			
+			var hit = Geometry3D.ray_intersects_triangle(local_origin, local_dir, a, b, c)
 			if hit:
-				var dist = origin.distance_to(hit)
+				var dist = local_origin.distance_to(hit)
 				if dist < closest_dist:
 					closest_dist = dist
-					
 					var bary = Geometry3D.get_triangle_barycentric_coords(hit, a, b, c)
-					
 					var uv_a = uvs[indices[i]]
 					var uv_b = uvs[indices[i+1]]
 					var uv_c = uvs[indices[i+2]]
-					
 					final_uv = uv_a * bary.x + uv_b * bary.y + uv_c * bary.z
 	return final_uv
 

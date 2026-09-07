@@ -89,7 +89,7 @@ func update_preview():
 func draw_from_uv(uv: Vector2):
 	var tex_size = texture.get_size()
 	
-
+	
 	var pos = Vector2i(
 		floor(uv.x * tex_size.x),
 		floor(uv.y * tex_size.x)

@@ -62,14 +62,10 @@ func enable_node(node: Node):
 
 func disable():
 	visible = false
-	for child in self.get_children():
-		if child is CollisionObject3D:
-			var shape = child.get_node("CollisionShape3D")
-			shape.disabled = true
+	for shape in self.find_children("*", "CollisionShape3D", true, false):
+		shape.disabled = true
 
 func enable():
 	visible = true
-	for child in self.get_children():
-		if child is CollisionObject3D:
-			var shape = child.get_node("CollisionShape3D")
-			shape.disabled = false
+	for shape in self.find_children("*", "CollisionShape3D", true, false):
+		shape.disabled = false
