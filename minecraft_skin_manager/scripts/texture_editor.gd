@@ -87,12 +87,16 @@ func update_preview():
 
 
 func draw_from_uv(uv: Vector2):
+	if uv == null:
+		return
+	if not (is_finite(uv.x) and is_finite(uv.y)):
+		return
+	
 	var tex_size = texture.get_size()
 	
-	
 	var pos = Vector2i(
-		floor(uv.x * tex_size.x),
-		floor(uv.y * tex_size.x)
+		floor(clamp(uv.x, 0.0, 0.999999) * tex_size.x),
+		floor(clamp(uv.y, 0.0, 0.999999) * tex_size.y)
 	)
 	draw_action(tool_component.selected_tool, pos)
 
@@ -179,6 +183,20 @@ func bucket_fill(start: Vector2i):
 	
 	refresh_texture()
 
+func fill_face_from_uv_rect(uv_min: Vector2, uv_max: Vector2):
+	if not (is_finite(uv_min.x) and is_finite(uv_min.y) and is_finite(uv_max.x) and is_finite(uv_max.y)):
+		return
+	
+	var tex_size = texture.get_size()
+	var px_min = Vector2i(round(uv_min.x * tex_size.x), round(uv_min.y * tex_size.y))
+	var px_max = Vector2i(round(uv_max.x * tex_size.x), round(uv_max.y * tex_size.y))
+	
+	for x in range(px_min.x, px_max.x):
+		for y in range(px_min.y, px_max.y):
+			if is_in_bounds(x, y):
+				image.set_pixel(x, y, selected_color)
+	
+	refresh_texture()
 
 
 func is_in_bounds(x, y):

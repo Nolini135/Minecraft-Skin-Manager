@@ -29,7 +29,6 @@ signal skin_ready(image: Image)
 @onready var username_input: LineEdit = $Panel/MarginContainer/VBoxContainer/GetFromUserPanel/MarginContainer/VBoxContainer/UsernameInput
 
 
-
 #For HTTP Request
 var step = 0
 var current_username = ""

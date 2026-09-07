@@ -50,15 +50,16 @@ func shoot_ray():
 			return
 		
 		# Get UV
-		var uv = get_mesh_uv_from_ray(mesh_instance, from, to)
-		
-		# Draw at The Position
-		if uv:
-			skin_editor.draw_from_uv(uv)
+		var uv_data = get_mesh_uv_from_ray(mesh_instance, from, to)
+		if uv_data:
+			if tool_component.selected_tool == "bucket":
+				skin_editor.fill_face_from_uv_rect(uv_data.uv_min, uv_data.uv_max)
+			else:
+				skin_editor.draw_from_uv(uv_data.point_uv)
 
 func get_mesh_uv_from_ray(mesh: MeshInstance3D, origin: Vector3, dir_end: Vector3):
 	var closest_dist = INF
-	var final_uv = null
+	var result = null
 	var mesh_res: Mesh = mesh.mesh
 	
 	var to_local = mesh.global_transform.affine_inverse()
@@ -76,7 +77,6 @@ func get_mesh_uv_from_ray(mesh: MeshInstance3D, origin: Vector3, dir_end: Vector
 			var b = verts[indices[i+1]]
 			var c = verts[indices[i+2]]
 			
-			# Ignore les faces qui ne font pas face à la caméra
 			var face_normal = (b - a).cross(c - a).normalized()
 			if face_normal.dot(local_dir) <= 0:
 				continue
@@ -90,8 +90,12 @@ func get_mesh_uv_from_ray(mesh: MeshInstance3D, origin: Vector3, dir_end: Vector
 					var uv_a = uvs[indices[i]]
 					var uv_b = uvs[indices[i+1]]
 					var uv_c = uvs[indices[i+2]]
-					final_uv = uv_a * bary.x + uv_b * bary.y + uv_c * bary.z
-	return final_uv
+					result = {
+						"point_uv": uv_a * bary.x + uv_b * bary.y + uv_c * bary.z,
+						"uv_min": Vector2(min(uv_a.x, uv_b.x, uv_c.x), min(uv_a.y, uv_b.y, uv_c.y)),
+						"uv_max": Vector2(max(uv_a.x, uv_b.x, uv_c.x), max(uv_a.y, uv_b.y, uv_c.y)),
+					}
+	return result
 
 func ray_triangle_intersection(origin, dir, a, b, c):
 	return Geometry3D.ray_intersects_triangle(origin, dir, a, b, c)

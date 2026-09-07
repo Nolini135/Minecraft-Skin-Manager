@@ -191,6 +191,7 @@ text = "Color: "
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 color = Color(1, 1, 1, 1)
+edit_intensity = false
 
 [node name="EmptyCavasPanel" type="Panel" parent="Panel/MarginContainer/VBoxContainer" unique_id=1654572007]
 visible = false
