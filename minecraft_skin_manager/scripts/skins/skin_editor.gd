@@ -48,7 +48,7 @@ func disable_node(node: Node):
 			shape.disabled = true
 		disable_node(child)
 
-func enable_node(node: Node):
+func enable_node(node: Node, layer: bool = false):
 	node.visible = true
 	node.set_process(true)
 	node.set_physics_process(true)
@@ -68,4 +68,6 @@ func disable():
 func enable():
 	visible = true
 	for shape in self.find_children("*", "CollisionShape3D", true, false):
-		shape.disabled = false
+		var mesh_instance = shape.get_parent().get_parent()
+		if mesh_instance.visible:
+			shape.disabled = false

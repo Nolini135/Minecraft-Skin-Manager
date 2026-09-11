@@ -74,11 +74,15 @@ func _on_arm_right_pressed() -> void:
 		arm_right_button.texture_normal.region = Rect2(4, 0, 4, 13)
 	else:
 		if wide_editor.layer_enabled:
-			wide_editor.enable_node(wide_editor.right_arm_layer)
-			slim_editor.enable_node(slim_editor.right_arm_layer)
+			if current_editor == wide_editor:
+				wide_editor.enable_node(wide_editor.right_arm_layer)
+			else:
+				slim_editor.enable_node(slim_editor.right_arm_layer)
 		
-		wide_editor.enable_node(wide_editor.right_arm)
-		slim_editor.enable_node(slim_editor.right_arm)
+		if current_editor == wide_editor: #check the current model type for arm collision
+			wide_editor.enable_node(wide_editor.right_arm)
+		else:
+			slim_editor.enable_node(slim_editor.right_arm)
 		
 		arm_right_button.texture_normal.region = Rect2(0, 0, 4, 13)
 	arm_right_enabled = not arm_right_enabled
@@ -102,11 +106,15 @@ func _on_arm_left_pressed() -> void:
 		arm_left_button.texture_normal.region = Rect2(4, 0, 4, 13)
 	else:
 		if wide_editor.layer_enabled:
-			wide_editor.enable_node(wide_editor.left_arm_layer)
-			slim_editor.enable_node(slim_editor.left_arm_layer)
+			if current_editor == wide_editor:
+				wide_editor.enable_node(wide_editor.left_arm_layer)
+			else:
+				slim_editor.enable_node(slim_editor.left_arm_layer)
 		
-		wide_editor.enable_node(wide_editor.left_arm)
-		slim_editor.enable_node(slim_editor.left_arm)
+		if current_editor == wide_editor: #check the current model type for arm collision
+			wide_editor.enable_node(wide_editor.left_arm)
+		else:
+			slim_editor.enable_node(slim_editor.left_arm)
 		
 		arm_left_button.texture_normal.region = Rect2(0, 0, 4, 13)
 	arm_left_enabled = not arm_left_enabled
@@ -239,6 +247,8 @@ func _on_model_selector_item_selected(index: int) -> void:
 		0: # Wide
 			wide_editor.enable()
 			slim_editor.disable()
+			current_editor = wide_editor
 		1: # Slim
 			wide_editor.disable()
 			slim_editor.enable()
+			current_editor = slim_editor
