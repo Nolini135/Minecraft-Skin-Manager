@@ -3,7 +3,7 @@ class_name ToolComponent extends Node
 @export var skin_editor: TextureEditor
 @export var canvas_viewer_component: CanvasViewerComponent
 
-@onready var tool_selector: OptionButton = %ToolSelector
+@export var tool_selector: OptionButton
 
 
 var is_painting: bool = false

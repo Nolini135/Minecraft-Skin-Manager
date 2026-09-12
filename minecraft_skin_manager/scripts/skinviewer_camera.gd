@@ -22,7 +22,6 @@ func _process(_delta: float) -> void:
 		rotating_model = false
 		holding_on_model = false
 	
-	print(holding_on_model)
 
 func _input(event: InputEvent) -> void:
 	rc_drawing_input(event)

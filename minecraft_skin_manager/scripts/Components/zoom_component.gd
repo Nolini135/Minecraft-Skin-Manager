@@ -4,9 +4,9 @@ class_name CanvasViewerComponent extends Node
 @export var tool_component: ToolComponent
 @export var undo_component: UndoComponent
 
-@onready var canvas_viewer: Control = %CanvasViewer
-@onready var zoom_container: Control = %ZoomContainer
-@onready var canvas: TextureRect = %Canvas
+@export var canvas_viewer: Control
+@export var zoom_container: Control
+@export var canvas: TextureRect
 
 
 # Canvas Viewer Variables

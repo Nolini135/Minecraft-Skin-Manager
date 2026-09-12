@@ -19,7 +19,7 @@ script = ExtResource("1_d7tti")
 
 [node name="Panel" type="Panel" parent="." unique_id=1037959976]
 offset_right = 450.0
-offset_bottom = 315.0
+offset_bottom = 304.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_d7tti")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=564481062]

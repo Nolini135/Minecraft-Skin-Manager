@@ -219,7 +219,9 @@ bg_color = Color(0.078431375, 0.078431375, 0.078431375, 1)
 bg_color = Color(0.078431375, 0.078431375, 0.078431375, 1)
 
 [resource]
+AcceptDialog/font_sizes/title_font_size = 24
 AcceptDialog/styles/panel = SubResource("StyleBoxFlat_etfu1")
+Button/font_sizes/font_size = 24
 Button/styles/focus = SubResource("StyleBoxFlat_7ifoc")
 Button/styles/hover = SubResource("StyleBoxFlat_cx1ul")
 Button/styles/normal = SubResource("StyleBoxFlat_7shl5")
@@ -232,10 +234,12 @@ MenuBar/styles/disabled = SubResource("StyleBoxEmpty_v8lcx")
 MenuBar/styles/hover = SubResource("StyleBoxFlat_l8u1b")
 MenuBar/styles/normal = SubResource("StyleBoxFlat_v8lcx")
 MenuBar/styles/pressed = SubResource("StyleBoxFlat_0wfyh")
+OptionButton/font_sizes/font_size = 24
 OptionButton/styles/hover = SubResource("StyleBoxFlat_ifk6q")
 OptionButton/styles/normal = SubResource("StyleBoxFlat_w0awp")
 OptionButton/styles/pressed = SubResource("StyleBoxFlat_f6x2i")
 Panel/styles/panel = SubResource("StyleBoxFlat_saxfq")
+PopupMenu/font_sizes/font_size = 26
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_qegse")
 PopupMenu/styles/labeled_separator_left = SubResource("StyleBoxLine_v8lcx")
 PopupMenu/styles/labeled_separator_right = SubResource("StyleBoxLine_l8u1b")

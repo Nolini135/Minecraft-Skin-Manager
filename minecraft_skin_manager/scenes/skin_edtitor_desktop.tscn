@@ -318,7 +318,7 @@ PopupMenu/styles/separator = SubResource("StyleBoxLine_etfu1")
 Window/styles/embedded_border = SubResource("StyleBoxFlat_3vmqt")
 Window/styles/embedded_unfocused_border = SubResource("StyleBoxFlat_ryo58")
 
-[node name="SkinEdtitor" type="Control" unique_id=2019968350]
+[node name="SkinEdtitor" type="Control" unique_id=2019968350 node_paths=PackedStringArray("color_picker", "tool_selector", "canvas", "grid_overlay", "zoom_container", "canvas_viewer", "skin_viewer", "file_menu", "new_skin_confirmation_dialog", "open_file_dialog", "save_file_dialog", "tool_component")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -326,6 +326,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t4784")
+color_picker = NodePath("GlobalMargin/VBoxContainer/HBoxContainer/ColorPanel/VBoxContainer/ColorPicker")
+tool_selector = NodePath("GlobalMargin/VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/ToolSelector")
+canvas = NodePath("GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas")
+grid_overlay = NodePath("GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas/GridOverlay")
+zoom_container = NodePath("GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer")
+canvas_viewer = NodePath("GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer")
+skin_viewer = NodePath("GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer")
+file_menu = NodePath("GlobalMargin/VBoxContainer/MenuBar/FileMenu")
+new_skin_confirmation_dialog = NodePath("Windows/NewSkinConfirmationDialog")
+open_file_dialog = NodePath("OpenFileDialog")
+save_file_dialog = NodePath("SaveFileDialog")
+tool_component = NodePath("Components/ToolComponent")
 
 [node name="BackgroundColor" type="ColorRect" parent="." unique_id=2120363151]
 layout_mode = 1
@@ -338,11 +350,12 @@ color = Color(0.078431375, 0.078431375, 0.078431375, 1)
 
 [node name="Components" type="Node" parent="." unique_id=1819342850]
 
-[node name="ToolComponent" type="Node" parent="Components" unique_id=691228896 node_paths=PackedStringArray("skin_editor", "canvas_viewer_component")]
+[node name="ToolComponent" type="Node" parent="Components" unique_id=691228896 node_paths=PackedStringArray("skin_editor", "canvas_viewer_component", "tool_selector")]
 unique_name_in_owner = true
 script = ExtResource("2_bwcg2")
 skin_editor = NodePath("../..")
 canvas_viewer_component = NodePath("../CanvasViewerComponent")
+tool_selector = NodePath("../../GlobalMargin/VBoxContainer/ToolsPanel/MarginContainer/VBoxContainer/HBoxContainer/ToolSelector")
 hold_click_tools = Array[String](["pen", "eraser"])
 single_click_tools = Array[String](["pen", "eraser", "bucket", "color_picker"])
 cursor_image = Dictionary[String, CompressedTexture2D]({
@@ -358,11 +371,14 @@ cursor_hotspot = Dictionary[String, Vector2i]({
 "pen": Vector2i(0, 16)
 })
 
-[node name="CanvasViewerComponent" type="Node" parent="Components" unique_id=1341968281 node_paths=PackedStringArray("skin_editor", "tool_component", "undo_component")]
+[node name="CanvasViewerComponent" type="Node" parent="Components" unique_id=1341968281 node_paths=PackedStringArray("skin_editor", "tool_component", "undo_component", "canvas_viewer", "zoom_container", "canvas")]
 script = ExtResource("3_1lfo5")
 skin_editor = NodePath("../..")
 tool_component = NodePath("../ToolComponent")
 undo_component = NodePath("../UndoComponent")
+canvas_viewer = NodePath("../../GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer")
+zoom_container = NodePath("../../GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer")
+canvas = NodePath("../../GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/CanvasPanel/MarginContainer/CanvasViewer/Control/ZoomContainer/Canvas")
 
 [node name="UndoComponent" type="Node" parent="Components" unique_id=785783015 node_paths=PackedStringArray("skin_editor")]
 script = ExtResource("4_l67ed")
@@ -386,11 +402,14 @@ theme_override_constants/margin_bottom = 12
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="MenuBar" type="MenuBar" parent="GlobalMargin/VBoxContainer" unique_id=1079959188 node_paths=PackedStringArray("editor")]
+[node name="MenuBar" type="MenuBar" parent="GlobalMargin/VBoxContainer" unique_id=1079959188 node_paths=PackedStringArray("editor", "file_menu", "about_menu", "about_window")]
 layout_mode = 2
 theme = ExtResource("2_w2r33")
 script = ExtResource("3_fjinl")
 editor = NodePath("../../..")
+file_menu = NodePath("FileMenu")
+about_menu = NodePath("AboutMenu")
+about_window = NodePath("../../../Windows/AboutWindow")
 
 [node name="FileMenu" type="PopupMenu" parent="GlobalMargin/VBoxContainer/MenuBar" unique_id=1044810089]
 unique_name_in_owner = true
@@ -509,7 +528,7 @@ drag_area_margin_end = 32
 drag_area_highlight_in_editor = true
 
 [node name="CanvasPanel" type="Panel" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer" unique_id=1814410074]
-custom_minimum_size = Vector2(250, 250)
+custom_minimum_size = Vector2(320, 250)
 layout_mode = 2
 theme = ExtResource("2_w2r33")
 
@@ -607,15 +626,14 @@ leg_right_button = NodePath("VBoxContainer/Control/body/leg_right")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel" unique_id=912144671]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_right = 300.0
 grow_vertical = 2
 alignment = 1
 
 [node name="Control" type="Control" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/VSplitContainer/LayersPanel/VBoxContainer" unique_id=784552465]
-custom_minimum_size = Vector2(0, 256)
+custom_minimum_size = Vector2(0, 320)
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -757,18 +775,23 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer" unique_id=985063822]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer" unique_id=985063822 node_paths=PackedStringArray("editor", "skin_viewer_3d", "camera_container", "skin_wide", "skin_slim")]
 unique_name_in_owner = true
 layout_mode = 2
 stretch = true
 mouse_target = true
 script = ExtResource("2_o4u5r")
+editor = NodePath("../../../../../../..")
+skin_viewer_3d = NodePath("SubViewport/SkinViewer3D")
+camera_container = NodePath("SubViewport/SkinViewer3D/CameraContainer")
+skin_wide = NodePath("SubViewport/SkinViewer3D/wide_editor")
+skin_slim = NodePath("SubViewport/SkinViewer3D/slim_editor")
 
 [node name="SubViewport" type="SubViewport" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer" unique_id=186846003]
 handle_input_locally = false
 msaa_3d = 1
 physics_object_picking = true
-size = Vector2i(936, 741)
+size = Vector2i(866, 741)
 render_target_update_mode = 4
 
 [node name="SkinViewer3D" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport" unique_id=256221848 node_paths=PackedStringArray("wide_editor", "slim_editor", "head_button", "body_button", "arm_left_button", "arm_right_button", "leg_left_button", "leg_right_button") instance=ExtResource("4_w2r33")]

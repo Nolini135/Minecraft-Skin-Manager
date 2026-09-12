@@ -4,24 +4,24 @@ class_name TextureEditor
 @export_category("References")
 @export var layer_component: LayerComponent
 
-@onready var color_picker: ColorPicker = %ColorPicker
+@export var color_picker: ColorPicker
 
-@onready var tool_selector: OptionButton = %ToolSelector
+@export var tool_selector: OptionButton
 
-@onready var canvas: TextureRect = %Canvas
-@onready var grid_overlay: Control = %GridOverlay
-@onready var zoom_container: Control = %ZoomContainer
-@onready var canvas_viewer: Control = %CanvasViewer
+@export var canvas: TextureRect
+@export var grid_overlay: Control
+@export var zoom_container: Control
+@export var canvas_viewer: Control
 
-@onready var skin_viewer: SkinEditorViewer = %SubViewportContainer
+@export var skin_viewer: SkinEditorViewer
 
-@onready var file_menu: PopupMenu = %FileMenu
+@export var file_menu: PopupMenu
 
-@onready var new_skin_confirmation_dialog: ConfirmationDialog = %NewSkinConfirmationDialog
-@onready var open_file_dialog: FileDialog = $OpenFileDialog
-@onready var save_file_dialog: FileDialog = $SaveFileDialog
+@export var new_skin_confirmation_dialog: ConfirmationDialog
+@export var open_file_dialog: FileDialog
+@export var save_file_dialog: FileDialog
 
-@onready var tool_component: ToolComponent = %ToolComponent
+@export var tool_component: ToolComponent
 
 var selected_color: Color = Color("ff0000ff")
 var hex: String = "#ff0000"
