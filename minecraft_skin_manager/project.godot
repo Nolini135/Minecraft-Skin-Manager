@@ -18,11 +18,12 @@ config/custom_user_dir_name="MC_Skin_Manager"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 run/max_fps=60
 boot_splash/bg_color=Color(0.101960786, 0.101960786, 0.101960786, 1)
-boot_splash/image="uid://j4d37un4ny0c"
+boot_splash/stretch_mode=0
+boot_splash/use_filter=false
+boot_splash/image="uid://8kssh7w7ao1j"
 config/icon="uid://baewnt2e688md"
 config/macos_native_icon="res://assets/icons/icon_macos.icns"
 config/windows_native_icon="res://assets/icons/icon.ico"
-boot_splash/minimum_display_time=1500
 
 [autoload]
 
