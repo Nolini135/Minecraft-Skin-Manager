@@ -7,9 +7,22 @@ extends Camera3D
 @export var tool_component: ToolComponent
 
 var painting := false
+var clicked_on_model := false
+var rotating_model := false
+var holding_on_model := false
 
 func _process(_delta: float) -> void:
-	if painting: shoot_ray()
+	if painting:
+		if not rotating_model:
+			clicked_on_model = shoot_ray()
+			if not holding_on_model:
+				rotating_model = not clicked_on_model
+				holding_on_model = clicked_on_model
+	if Input.is_action_just_released("left_click"):
+		rotating_model = false
+		holding_on_model = false
+	
+	print(holding_on_model)
 
 func _input(event: InputEvent) -> void:
 	rc_drawing_input(event)
@@ -25,9 +38,13 @@ func rc_drawing_input(event: InputEvent):
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 			painting = event.is_pressed()
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		shoot_ray()
+		if not rotating_model:
+			clicked_on_model = shoot_ray()
+			if not holding_on_model:
+				rotating_model = not clicked_on_model
+				holding_on_model = clicked_on_model
 
-func shoot_ray():
+func shoot_ray() -> bool:
 	var mouse_pos = get_viewport().get_mouse_position()
 	var ray_length = 1000
 	var from = project_ray_origin(mouse_pos)
@@ -47,7 +64,7 @@ func shoot_ray():
 		var mesh_instance = collider.get_parent() as MeshInstance3D
 		if mesh_instance == null:
 			printerr("no MeshInstance3D found: return")
-			return
+			return false
 		
 		# Get UV
 		var uv_data = get_mesh_uv_from_ray(mesh_instance, from, to)
@@ -56,6 +73,8 @@ func shoot_ray():
 				skin_editor.fill_face_from_uv_rect(uv_data.uv_min, uv_data.uv_max)
 			else:
 				skin_editor.draw_from_uv(uv_data.point_uv)
+		return true
+	return false
 
 func get_mesh_uv_from_ray(mesh: MeshInstance3D, origin: Vector3, dir_end: Vector3):
 	var closest_dist = INF
@@ -110,7 +129,8 @@ func handle_zoom(event: InputEvent):
 
 func handle_model_rotation(event: InputEvent):
 	if event is InputEventMouseMotion:
-		if Input.is_action_pressed("right_click"):
+		if (Input.is_action_pressed("right_click")
+		or (Input.is_action_pressed("left_click") and not clicked_on_model and not holding_on_model)):
 			container.rotation.y -= event.relative.x * 0.01
 			container.rotation.x -= event.relative.y * 0.01
 			container.rotation_degrees.x = clamp(container.rotation_degrees.x, -90, 90)

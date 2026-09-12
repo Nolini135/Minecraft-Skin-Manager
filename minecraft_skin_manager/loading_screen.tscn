@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://86enjkre82t2"]
+
+[ext_resource type="Texture2D" uid="uid://j4d37un4ny0c" path="res://assets/icons/splashscreen/SplashScreen.png" id="1_htrc2"]
+[ext_resource type="Script" uid="uid://3nfymcrkk6cn" path="res://loading_screen.gd" id="1_weff3"]
+[ext_resource type="Shader" uid="uid://csasac4wteuml" path="res://shaders/loading_ring.gdshader" id="2_weff3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8234x"]
+shader = ExtResource("2_weff3")
+shader_parameter/radius = 0.05500000191398
+shader_parameter/ring_radius = 0.42200001678512
+shader_parameter/speed = 1.0
+shader_parameter/count = 8
+shader_parameter/fade_power = 1.7960000378099998
+shader_parameter/circle_color = Color(1, 1, 1, 1)
+
+[node name="LoadingScreen" type="ColorRect" unique_id=419871194]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_weff3")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=700736877]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -800.0
+offset_top = -511.0
+offset_right = 800.0
+offset_bottom = 389.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_htrc2")
+
+[node name="LoadingRect" type="ColorRect" parent="." unique_id=1166723640]
+material = SubResource("ShaderMaterial_8234x")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = 140.0
+offset_right = 120.0
+offset_bottom = 380.0
+grow_horizontal = 2
+grow_vertical = 2

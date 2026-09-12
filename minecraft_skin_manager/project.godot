@@ -12,8 +12,8 @@ config_version=5
 
 config/name="Minecraft skin manager"
 config/description="Skin Editor For Minecraft: Java & Bedrock Edition made by Nolini135."
-config/version="0.2.2"
-run/main_scene="uid://8gd2yjyi8a5y"
+config/version="0.2.3"
+run/main_scene="uid://86enjkre82t2"
 config/custom_user_dir_name="MC_Skin_Manager"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 run/max_fps=60
@@ -127,6 +127,5 @@ move_backward={
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
 anti_aliasing/quality/msaa_3d=2
