@@ -14,7 +14,8 @@ config/name="Minecraft skin manager"
 config/description="Skin Editor For Minecraft: Java & Bedrock Edition made by Nolini135."
 config/version="0.2.3"
 run/main_scene="uid://86enjkre82t2"
-config/custom_user_dir_name="MC_Skin_Manager"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="MinecraftSkinManager"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 run/max_fps=60
 boot_splash/bg_color=Color(0.101960786, 0.101960786, 0.101960786, 1)
@@ -28,6 +29,9 @@ config/windows_native_icon="res://assets/icons/icon.ico"
 [autoload]
 
 SettingsManager="*uid://b5mhvgghxhqar"
+ThemeManager="*uid://buv0nshgu4wpb"
+ImageSaver="*uid://bjcs11uagve0d"
+EventBus="*uid://bcsx12h1gumk7"
 
 [display]
 
@@ -36,6 +40,7 @@ window/size/viewport_height=900
 window/size/window_width_override=1600
 window/size/window_height_override=900
 window/energy_saving/keep_screen_on=false
+window/subwindows/embed_subwindows=false
 window/vsync/vsync_mode=0
 
 [dotnet]
@@ -46,8 +51,13 @@ project/assembly_name="Minecraft skin manager"
 
 folder_colors={
 "res://assets/": "red",
+"res://resources/": "yellow",
 "res://scenes/": "green"
 }
+
+[gui]
+
+theme/custom="uid://v01qaqdby2uw"
 
 [input]
 

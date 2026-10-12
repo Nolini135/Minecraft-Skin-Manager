@@ -1,25 +1,37 @@
 [gd_scene format=3 uid="uid://bunuxi2lyx22i"]
 
 [ext_resource type="Script" uid="uid://dp02scn6fphqi" path="res://scripts/settings_window.gd" id="1_0vxjp"]
-[ext_resource type="Theme" uid="uid://v01qaqdby2uw" path="res://resources/themes/dark_theme.tres" id="2_p3qa1"]
+[ext_resource type="Script" uid="uid://n3kl3gkbx2mc" path="res://scripts/Components/window_theme_updater_component.gd" id="2_y1tgk"]
+[ext_resource type="Script" uid="uid://cghhpy1si0k51" path="res://scripts/background_color_theme_updater.gd" id="3_y1tgk"]
 
-[node name="SettingsWindow" type="Window" unique_id=1471915597 node_paths=PackedStringArray("ui_theme")]
+[node name="SettingsWindow" type="Window" unique_id=1471915597 node_paths=PackedStringArray("auto_save_spinbox", "theme_option", "bg_color_picker", "bg_image_line_edit", "font_line_edit")]
 oversampling_override = 1.0
-title = "Settings"
-position = Vector2i(0, 36)
+title = "Preferences"
+initial_position = 2
 size = Vector2i(600, 360)
+visible = false
 transient = true
 min_size = Vector2i(450, 270)
 script = ExtResource("1_0vxjp")
-ui_theme = NodePath("")
+auto_save_spinbox = NodePath("BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Autosave/MarginContainer/Autosave/SpinBox")
+theme_option = NodePath("BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Theme/MarginContainer/Theme/OptionButton")
+bg_color_picker = NodePath("BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/BackgroundColor/MarginContainer/BackgroundColor/ColorPickerButton")
+bg_image_line_edit = NodePath("BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/BackgroundImage/MarginContainer/BackgroundImage/LineEdit")
+font_line_edit = NodePath("BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FontPath/MarginContainer/HBoxContainer/LineEdit")
 
-[node name="BG" type="Panel" parent="." unique_id=536033291]
+[node name="WindowThemeUpdater" type="Node" parent="." unique_id=1641452122]
+script = ExtResource("2_y1tgk")
+metadata/_custom_type_script = "uid://n3kl3gkbx2mc"
+
+[node name="BG" type="ColorRect" parent="." unique_id=1019775964]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_p3qa1")
+color = Color(0.14044744, 0.14044744, 0.14044744, 1)
+script = ExtResource("3_y1tgk")
+metadata/_custom_type_script = "uid://cghhpy1si0k51"
 
 [node name="MarginContainer" type="MarginContainer" parent="BG" unique_id=515227834]
 layout_mode = 1
@@ -29,27 +41,221 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 64
-theme_override_constants/margin_top = 32
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 64
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BG/MarginContainer" unique_id=1003320298]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Label" type="Label" parent="BG/MarginContainer/VBoxContainer" unique_id=1589521892]
+[node name="TitleLabel" type="Label" parent="BG/MarginContainer/VBoxContainer" unique_id=1885540111]
 layout_mode = 2
-text = "No Settings Available for this version..."
+text = "Preferences"
+horizontal_alignment = 1
 
-[node name="SaveButton" type="Button" parent="BG/MarginContainer/VBoxContainer" unique_id=1324848245]
+[node name="ScrollContainer" type="ScrollContainer" parent="BG/MarginContainer/VBoxContainer" unique_id=931661371]
 layout_mode = 2
-text = "Save Settings"
+size_flags_vertical = 3
 
-[node name="WarnLabel" type="Label" parent="BG/MarginContainer/VBoxContainer" unique_id=72253094]
+[node name="MarginContainer" type="MarginContainer" parent="BG/MarginContainer/VBoxContainer/ScrollContainer" unique_id=402842610]
 layout_mode = 2
-theme = ExtResource("2_p3qa1")
-text = "You might have to restart to see some changes."
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" unique_id=79789048]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="Autosave" type="Panel" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=62233573]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Autosave" unique_id=1862989796]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 0
+
+[node name="Autosave" type="HBoxContainer" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Autosave/MarginContainer" unique_id=974432273]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Autosave/MarginContainer/Autosave" unique_id=738339382]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Auto Save (to do)"
+
+[node name="SpinBox" type="SpinBox" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Autosave/MarginContainer/Autosave" unique_id=1563359146]
+custom_minimum_size = Vector2(95, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 3600.0
+value = 30.0
+suffix = "sec"
+
+[node name="Theme" type="Panel" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1026494012]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Theme" unique_id=1861850910]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 0
+
+[node name="Theme" type="HBoxContainer" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Theme/MarginContainer" unique_id=121366689]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Theme/MarginContainer/Theme" unique_id=877181649]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Theme"
+
+[node name="OptionButton" type="OptionButton" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Theme/MarginContainer/Theme" unique_id=1296142047]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 2
+popup/item_0/text = "Dark"
+popup/item_0/id = 0
+popup/item_1/text = "Light"
+popup/item_1/id = 1
+
+[node name="BackgroundColor" type="Panel" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=116686655]
+custom_minimum_size = Vector2(0, 320)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/BackgroundColor" unique_id=1268371926]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 0
+
+[node name="BackgroundColor" type="HBoxContainer" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/BackgroundColor/MarginContainer" unique_id=1007448920]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/BackgroundColor/MarginContainer/BackgroundColor" unique_id=1259609689]
+layout_mode = 2
+text = "Background Color"
+
+[node name="ColorPickerButton" type="ColorPicker" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/BackgroundColor/MarginContainer/BackgroundColor" unique_id=956085927]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+edit_alpha = false
+edit_intensity = false
+color_mode = 1
+picker_shape = 2
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+presets_visible = false
+
+[node name="BackgroundImage" type="Panel" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=231990273]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/BackgroundImage" unique_id=745316994]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 0
+
+[node name="BackgroundImage" type="HBoxContainer" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/BackgroundImage/MarginContainer" unique_id=1696747327]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/BackgroundImage/MarginContainer/BackgroundImage" unique_id=2096242726]
+layout_mode = 2
+text = "Background Image"
+
+[node name="LineEdit" type="LineEdit" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/BackgroundImage/MarginContainer/BackgroundImage" unique_id=61406076]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+placeholder_text = "Path (Leave empty to use Color)"
+
+[node name="FontPath" type="Panel" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=517684249]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FontPath" unique_id=961676999]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FontPath/MarginContainer" unique_id=448985257]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FontPath/MarginContainer/HBoxContainer" unique_id=1497538201]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Font Path"
+
+[node name="LineEdit" type="LineEdit" parent="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FontPath/MarginContainer/HBoxContainer" unique_id=592167205]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+placeholder_text = "Path (Leave empty to use default)"
+
+[connection signal="about_to_popup" from="." to="." method="_is_about_to_popup"]
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
-[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="pressed" from="BG/MarginContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="value_changed" from="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Autosave/MarginContainer/Autosave/SpinBox" to="." method="_auto_save_changed"]
+[connection signal="item_selected" from="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Theme/MarginContainer/Theme/OptionButton" to="." method="_on_theme_selected"]
+[connection signal="color_changed" from="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/BackgroundColor/MarginContainer/BackgroundColor/ColorPickerButton" to="." method="_on_background_color_changed"]
+[connection signal="text_submitted" from="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/BackgroundImage/MarginContainer/BackgroundImage/LineEdit" to="." method="_on_bg_image_path_submitted"]
+[connection signal="text_submitted" from="BG/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/FontPath/MarginContainer/HBoxContainer/LineEdit" to="." method="_on_font_path_submitted"]

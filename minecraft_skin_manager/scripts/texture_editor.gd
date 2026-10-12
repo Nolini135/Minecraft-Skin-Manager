@@ -20,6 +20,7 @@ class_name TextureEditor
 @export var new_skin_confirmation_dialog: ConfirmationDialog
 @export var open_file_dialog: FileDialog
 @export var save_file_dialog: FileDialog
+@export var settings_window: SettingsWindow
 
 @export var tool_component: ToolComponent
 
@@ -36,15 +37,17 @@ var height: int = 0
 var is_ready: bool = false
 
 func _ready():
+	ImageSaver.editor = self
 	get_window().min_size = Vector2(1150, 700)
 	
 	zoom_container.size_flags_stretch_ratio = true
 	
-	var img = Image.create(64, 64, false, Image.FORMAT_RGBA8)
-	img.fill(Color(1.0, 1.0, 1.0, 1.0))
+	var img = ImageSaver.load_auto_saved_texture()
 	
 	initialize_canvas(img)
 	is_ready = true
+	
+	ThemeManager.reload_theme()
 
 
 ############################ Texture Editor ############################
@@ -214,17 +217,15 @@ func update_texture():
 
 
 func _on_open_file_dialog_file_selected(path: String) -> void:
+	load_skin(path)
+
+func load_skin(path: String) -> void:
 	image = Image.load_from_file(path)
 	update_texture()
-	
 
 
 func _on_file_saved(path: String) -> void:
-	var img := texture.get_image()  # ton image de skin
-	var err := img.save_png(path)
-	
-	if not err == OK:
-		print("Erreur de sauvegarde :", err)
+	ImageSaver.save_image_texture(texture, path)
 
 
 func refresh_texture():

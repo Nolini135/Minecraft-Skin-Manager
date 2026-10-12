@@ -1,23 +1,27 @@
 [gd_scene format=3 uid="uid://bn1nuiggj0jdf"]
 
 [ext_resource type="Script" uid="uid://mw15q8rmtjre" path="res://scripts/about_window.gd" id="1_b02gk"]
+[ext_resource type="Script" uid="uid://cghhpy1si0k51" path="res://scripts/background_color_theme_updater.gd" id="2_b02gk"]
 
 [node name="AboutWindow" type="Window" unique_id=501139318]
 oversampling_override = 1.0
 title = "About"
-initial_position = 1
+initial_position = 2
 size = Vector2i(400, 250)
 visible = false
+transient = true
 min_size = Vector2i(400, 250)
 script = ExtResource("1_b02gk")
 
-[node name="BG" type="ColorRect" parent="." unique_id=811901477]
+[node name="BG" type="ColorRect" parent="." unique_id=1474490566]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.078431375, 0.078431375, 0.078431375, 1)
+script = ExtResource("2_b02gk")
+metadata/_custom_type_script = "uid://cghhpy1si0k51"
 
 [node name="Panel" type="Panel" parent="." unique_id=1061036084]
 self_modulate = Color(1, 1, 1, 0)
@@ -38,6 +42,7 @@ grow_vertical = 2
 [node name="title" type="RichTextLabel" parent="Panel/VBoxContainer" unique_id=853497639]
 custom_minimum_size = Vector2(0, 30.76)
 layout_mode = 2
+theme_override_constants/outline_size = 4
 bbcode_enabled = true
 text = "[u][b]Minecraft skin manager[/b][/u]
 "
@@ -47,6 +52,7 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 58.83)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/outline_size = 3
 bbcode_enabled = true
 text = "Development: [wave][u]Nolini135[/u][/wave]
 Icons: [wave][u]Fuzejjj[/u][/wave] & [wave][u]Nolini135[/u][/wave]

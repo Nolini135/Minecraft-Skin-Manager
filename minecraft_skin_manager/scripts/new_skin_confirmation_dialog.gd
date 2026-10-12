@@ -42,7 +42,7 @@ func _ready():
 	add_child(http)
 	http.request_completed.connect(_on_request_completed)
 	self.skin_ready.connect(_on_skin_ready)
-
+	
 
 func _on_confirmed() -> void:
 	var image: Image

@@ -1,7 +1,16 @@
 extends Node3D
 class_name SkinEditorModel
 
+enum Part { HEAD, BODY, RIGHT_ARM, LEFT_ARM, RIGHT_LEG, LEFT_LEG }
+
+## État des layers (hat, jacket, manches...). Une seule source de vérité : ce modèle.
 var layer_enabled: bool = true
+
+# Part -> bool. Rempli dans _ready().
+var _part_enabled: Dictionary = {}
+var _layer_enabled: Dictionary = {}
+# Part -> [mesh de base, mesh du layer]. Rempli dans _ready().
+var _parts: Dictionary = {}
 
 # Head
 @onready var full_head: Node3D = $Waist/Head2
@@ -34,40 +43,79 @@ var layer_enabled: bool = true
 @onready var left_leg_layer: MeshInstance3D = $"Left Leg2/Left Leg Layer"
 
 
-######### Disable Nodes #########
-
-func disable_node(node: Node):
-	node.visible = false
-	node.set_process(false)
-	node.set_physics_process(false)
-	node.set_process_input(false)
+func _ready() -> void:
+	_parts = {
+		Part.HEAD: [head, head_layer],
+		Part.BODY: [body, body_layer],
+		Part.RIGHT_ARM: [right_arm, right_arm_layer],
+		Part.LEFT_ARM: [left_arm, left_arm_layer],
+		Part.RIGHT_LEG: [right_leg, right_leg_layer],
+		Part.LEFT_LEG: [left_leg, left_leg_layer],
+	}
+	for part in _parts:
+		_part_enabled[part] = true
+		_layer_enabled[part] = true
 	
-	for child in node.get_children():
-		if child is CollisionObject3D:
-			var shape = child.get_node("CollisionShape3D")
-			shape.disabled = true
-		disable_node(child)
+	refresh_collisions()
 
-func enable_node(node: Node, layer: bool = false):
-	node.visible = true
-	node.set_process(true)
-	node.set_physics_process(true)
-	node.set_process_input(true)
-	
-	for child in node.get_children():
-		if child is CollisionObject3D:
-			var shape = child.get_node("CollisionShape3D")
-			shape.disabled = false
-		enable_node(child)
 
-func disable():
-	visible = false
-	for shape in self.find_children("*", "CollisionShape3D", true, false):
-		shape.disabled = true
+######### Parties du corps #########
 
-func enable():
+func is_part_enabled(part: Part) -> bool:
+	return _part_enabled[part]
+
+
+func set_part_enabled(part: Part, enabled: bool) -> void:
+	_part_enabled[part] = enabled
+	_apply_part(part)
+	refresh_collisions()
+
+
+######### Layers #########
+
+func is_part_layer_enabled(part: Part) -> bool:
+	return _layer_enabled[part]
+
+
+func set_part_layer_enabled(part: Part, enabled: bool) -> void:
+	_layer_enabled[part] = enabled
+	_apply_part(part)
+	refresh_collisions()
+
+
+## Active/désactive tous les layers d'un coup (bouton global)
+func set_layer_enabled(enabled: bool) -> void:
+	for part in _parts:
+		_layer_enabled[part] = enabled
+		_apply_part(part)
+	refresh_collisions()
+
+
+######### Modèle entier (wide / slim) #########
+
+func enable() -> void:
 	visible = true
-	for shape in self.find_children("*", "CollisionShape3D", true, false):
-		var mesh_instance = shape.get_parent().get_parent()
-		if mesh_instance.visible:
-			shape.disabled = false
+	refresh_collisions()
+
+
+func disable() -> void:
+	visible = false
+	refresh_collisions()
+
+
+######### Interne #########
+
+# Un layer n'est visible que si sa partie est active ET que les layers sont activés.
+func _apply_part(part: Part) -> void:
+	var meshes: Array = _parts[part]
+	var on: bool = _part_enabled[part]
+	meshes[0].visible = on
+	meshes[1].visible = on and _layer_enabled[part]
+
+
+## Les colliders suivent la visibilité réelle dans l'arbre : un nœud caché, ou dont
+## un parent est caché (ex. le modèle slim quand le wide est affiché), n'est jamais
+## détectable par un raycast.
+func refresh_collisions() -> void:
+	for shape in find_children("*", "CollisionShape3D", true, false):
+		shape.set_deferred("disabled", not shape.is_visible_in_tree())

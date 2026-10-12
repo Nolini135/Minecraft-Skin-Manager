@@ -17,7 +17,8 @@ func _on_file_menu_index_pressed(index: int) -> void:
 			editor.save_file_dialog.popup()
 		3:
 			editor.new_skin_confirmation_dialog.popup()
+		4:
+			editor.settings_window.popup()
 
-
-func _on_about_menu_about_to_popup() -> void:
+func _on_about_menu_pressed(id: int) -> void:
 	about_window.popup()

@@ -13,7 +13,7 @@ shader_parameter/count = 8
 shader_parameter/fade_power = 1.7960000378099998
 shader_parameter/circle_color = Color(1, 1, 1, 1)
 
-[node name="LoadingScreen" type="ColorRect" unique_id=419871194]
+[node name="LoadingScreen" type="ColorRect" unique_id=770593833]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

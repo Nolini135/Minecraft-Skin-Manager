@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://c6t8hqesiovac"]
 
 [ext_resource type="Script" uid="uid://bobuxgv0w4si6" path="res://scripts/texture_editor.gd" id="1_13xjk"]
+[ext_resource type="Script" uid="uid://cghhpy1si0k51" path="res://scripts/background_color_theme_updater.gd" id="2_d0l3n"]
 [ext_resource type="Script" uid="uid://dg76pyojmipgs" path="res://scripts/Components/tool_component.gd" id="2_mimom"]
+[ext_resource type="Script" uid="uid://hmxqr3jfya5u" path="res://scripts/background_image_updater.gd" id="3_02dk3"]
 [ext_resource type="Texture2D" uid="uid://cfjm5mdhfq681" path="res://assets/tools/bucket_16.png" id="3_bnkl0"]
 [ext_resource type="Texture2D" uid="uid://df0wwvkc7btmh" path="res://assets/tools/color_picker_16.png" id="4_jx5ar"]
 [ext_resource type="Texture2D" uid="uid://cutcj4nswoug3" path="res://assets/tools/eraser_16.png" id="5_d0l3n"]
@@ -27,7 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://bw2mcxcca57mt" path="res://assets/buttons/personnage_roblox/left_leg.png" id="24_vlqku"]
 [ext_resource type="Texture2D" uid="uid://dn24nuooiylo5" path="res://assets/icons/png/icon3D.png" id="25_jx5ar"]
 [ext_resource type="Texture2D" uid="uid://dcfaww2dywar3" path="res://assets/buttons/personnage_roblox/head.png" id="25_v8r14"]
-[ext_resource type="Script" uid="uid://8d2w25654jeh" path="res://scenes/skineditor3d_viewer.gd" id="26_umyvf"]
+[ext_resource type="Script" uid="uid://8d2w25654jeh" path="res://scripts/skineditor3d_viewer.gd" id="26_umyvf"]
 [ext_resource type="PackedScene" uid="uid://b216g4556ipw" path="res://scenes/skin_viewer_3d.tscn" id="27_ot7rf"]
 [ext_resource type="Script" uid="uid://cu6p1mjwikr4s" path="res://scripts/skin_viewer_3d.gd" id="28_g6qmd"]
 [ext_resource type="PackedScene" uid="uid://bn1nuiggj0jdf" path="res://scenes/Windows/about_window.tscn" id="29_6ei6q"]
@@ -341,7 +343,7 @@ open_file_dialog = NodePath("OpenFileDialog")
 save_file_dialog = NodePath("SaveFileDialog")
 tool_component = NodePath("Components/ToolComponent")
 
-[node name="BackgroundColor" type="ColorRect" parent="." unique_id=2120363151]
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=557987153]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -349,6 +351,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.078431375, 0.078431375, 0.078431375, 1)
+script = ExtResource("2_d0l3n")
+metadata/_custom_type_script = "uid://cghhpy1si0k51"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=807677963]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+script = ExtResource("3_02dk3")
+metadata/_custom_type_script = "uid://hmxqr3jfya5u"
 
 [node name="Components" type="Node" parent="." unique_id=1819342850]
 
@@ -693,7 +710,7 @@ popup/item_1/id = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 tab_alignment = 1
-current_tab = 1
+current_tab = 0
 tabs_position = 1
 tab_0/title = "2D Canvas"
 tab_0/icon = ExtResource("24_bnkl0")
@@ -701,7 +718,6 @@ tab_1/title = "3D Model"
 tab_1/icon = ExtResource("25_jx5ar")
 
 [node name="CanvasPanel" type="Panel" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/CanvasTabContainer" unique_id=1814410074]
-visible = false
 custom_minimum_size = Vector2(250, 250)
 layout_mode = 2
 theme = ExtResource("9_4b1y5")
@@ -787,6 +803,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="3DCanvasPanel" type="Panel" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/CanvasTabContainer" unique_id=452748997]
+visible = false
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme = ExtResource("9_4b1y5")
@@ -821,8 +838,8 @@ skin_slim = NodePath("SubViewport/SkinViewer3D/slim_editor")
 handle_input_locally = false
 msaa_3d = 1
 physics_object_picking = true
-size = Vector2i(666, 567)
-render_target_update_mode = 4
+size = Vector2i(2, 2)
+render_target_update_mode = 0
 
 [node name="SkinViewer3D" parent="GlobalMargin/VBoxContainer/HBoxContainer/HSplitContainer/CanvasTabContainer/3DCanvasPanel/MarginContainer/SubViewportContainer/SubViewport" unique_id=256221848 node_paths=PackedStringArray("wide_editor", "slim_editor", "head_button", "body_button", "arm_left_button", "arm_right_button", "leg_left_button", "leg_right_button") instance=ExtResource("27_ot7rf")]
 unique_name_in_owner = true
@@ -856,9 +873,10 @@ grow_vertical = 2
 
 [node name="ColorPicker" type="ColorPicker" parent="GlobalMargin/VBoxContainer/HBoxContainer/ColorPanel/VBoxContainer" unique_id=1134368372]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/sv_width = 420
+theme_override_constants/sv_height = 420
 color = Color(1, 0, 0, 1)
 edit_intensity = false
 color_mode = 1

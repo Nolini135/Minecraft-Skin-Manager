@@ -1,58 +1,82 @@
 extends Window
 class_name SettingsWindow
 
-@onready var dark_theme = preload("res://resources/themes/dark_theme.tres")
-@onready var light_theme = preload("res://resources/themes/light_theme.tres")
-
-@export var ui_theme: OptionButton
-
-@export var skin_folder_line_edit: LineEdit
-@export var skin_folder_add_button: Button
-@export var folder_array_element_container: Control
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	var s = SettingsManager.settings
-	
-	if s.theme == "dark":
-		$BG.theme = dark_theme
-	elif s.theme == "light":
-		$BG.theme = light_theme
-	
-	load_folder_array_elements()
-
-	print("Preferences window ready")
-
-
-func _on_visibility_changed() -> void:
-	if visible:
-		load_folder_array_elements()
-
-
-	
-
-func load_folder_array_elements():
-	if SettingsManager.settings == null:
-		print("Settings not loaded yet")
-		return
-	
-
-func _on_theme_option_item_selected(index: int) -> void:
-	var s = SettingsManager.settings
-	
-	match index:
-		0:
-			s.theme = "light"
-		1:
-			s.theme = "dark"
-	SettingsManager.save_settings()
-
+@export var auto_save_spinbox: SpinBox
+@export var theme_option: OptionButton
+@export var bg_color_picker: ColorPicker
+@export var bg_image_line_edit: LineEdit
+@export var font_line_edit: LineEdit
 
 func _on_close_requested() -> void:
 	if visible:
-		hide()   
+		hide()
+		save_changes()
+
+func _is_about_to_popup() -> void:
+	load_preferences()
+
+func save_changes() -> void:
+	SettingsManager.save_preferences()
+
+func load_preferences() -> void:
+	auto_save_spinbox.value = SettingsManager.get_saved_value("file", "auto_save_interval")
+	
+	for idx in range(theme_option.item_count):
+		if theme_option.get_item_text(idx) == SettingsManager.get_saved_value("display", "theme", "dark"):
+			theme_option.select(idx)
+	
+	bg_color_picker.color = Color.html(SettingsManager.get_saved_value("display", "background-color", "141414"))
+	
+	bg_image_line_edit.text = SettingsManager.get_saved_value("display", "background-image-path", "")
+	
+	font_line_edit.text = SettingsManager.get_saved_value("display", "font-path", "")
 
 
-func _on_save_button_pressed() -> void:
-	SettingsManager.save_settings()
+func _auto_save_changed(value: float):
+	SettingsManager.auto_save_interval = value
+	ImageSaver.reload_timer(value)
+
+func _on_theme_selected(index: int) -> void:
+	match index:
+		0:
+			ThemeManager.set_theme("dark")
+			SettingsManager.theme = "dark"
+		1:
+			ThemeManager.set_theme("light")
+			SettingsManager.theme = "light"
+
+func _on_background_color_changed(color: Color) -> void:
+	SettingsManager.bg_color = color.to_html()
+
+func _on_bg_image_path_submitted(new_text: String) -> void:
+	var formated_text: String = new_text.remove_chars('"')
+	formated_text = formated_text.replace("\\", "/")
+	
+	if formated_text == "":
+		SettingsManager.bg_image_path = ""
+		return
+	elif not FileAccess.file_exists(formated_text):
+		printerr("file does not exists: %s" % formated_text)
+		return
+	
+	var image = Image.load_from_file(formated_text)
+	if image.get_width() > 0:
+		EventBus.bg_image_changed.emit(image)
+		
+		SettingsManager.bg_image_path = formated_text
+	else:
+		printerr("cannot decode image file at %s" % formated_text)
+
+
+func _on_font_path_submitted(new_text: String) -> void:
+	var formated_text: String = new_text.remove_chars('"')
+	formated_text = formated_text.replace("\\", "/")
+	
+	if formated_text == "":
+		SettingsManager.font_path = ""
+		return
+	elif not FileAccess.file_exists(formated_text):
+		printerr("file does not exists: %s" % formated_text)
+		return
+	
+	SettingsManager.font_path = formated_text
